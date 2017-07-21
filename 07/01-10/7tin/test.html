@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getClient() {
+            return {
+                width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0,
+                height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0
+            }
+        }
+
+
+        // window.onresize = function(e) {
+        //     locationHref()
+
+        // };
+
+
+        (function locationHref() {
+            if (getClient().width > 760) {
+                document.write(getClient().width)
+                location.href = "./2.html"
+                console.log("您用的是电脑浏览的俺的这个页面");
+                // alert(1)
+            } else {
+                // alert(2)
+                document.write(getClient().width)
+                location.href = "./1.html"
+                console.log("您用的是破手机浏览的页面");
+            }
+
+        })()
+    </script>
+</body>
+
+</html>

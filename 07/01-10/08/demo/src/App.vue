@@ -2,27 +2,37 @@
 
 <div>
    <my-header :title = "msg1"></my-header>
-   <home></home>
-
+  
+         <router-view></router-view>
    <!--底部start-->
    <div class = "fotter">
       <ul class="mui-table-view mui-grid-view mui-grid-12">
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-home"></span>
-		                    <div class="mui-media-body">Home</div></a></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-email"><span class="mui-badge"></span></span>
-		                    <div class="mui-media-body">Email</div></a></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-chatbubble"></span>
-		                    <div class="mui-media-body">Chat</div></a></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-location"></span>
-		                    <div class="mui-media-body">location</div></a></li>
+  
+<router-link class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" :to="{name:'home'}">
+                <span class="mui-icon mui-icon-home"></span>
+                <span class="mui-tab-label">首页</span>
+            </router-link>
+            <router-link  class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" :to="{name:'member'}">
+                <span class="mui-icon mui-icon-members"></span>
+                <span class="mui-tab-label">会员</span>
+            </router-link>
+            <router-link  class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" :to="{name:'shopcart'}">
+                <span class="mui-icon mui-icon-shopcart"><span class="mui-badge">1</span></span>
+                <span class="mui-tab-label">购物车</span>
+            </router-link>
+            <router-link  class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" :to="{name:'search'}">
+                <span class="mui-icon mui-icon-search"></span>
+                <span class="mui-tab-label">查找</span>
+            </router-link>
+
+
+
+
+
       </ul>
    </div>
 
-     <router-view></router-view>
+
 </div>
 
 </template>

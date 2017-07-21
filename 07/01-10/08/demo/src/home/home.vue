@@ -4,7 +4,7 @@
 
 
     <mt-swipe :auto="4000">
-        <mt-swipe-item v-for = "(item ,index) in lunbo" :key = "index">
+        <mt-swipe-item v-for="(item ,index) in lunbo" :key="index">
             <a href="item.url">
                 <img :src="item.img" alt="">
             </a>
@@ -24,13 +24,31 @@
                             
                             </router-link>
                             
+                             
+
+
+                            
                             </li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
-		                    <div class="mui-media-body">Email</div></a></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-chatbubble"></span>
-		                    <div class="mui-media-body">Chat</div></a></li>
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        
+                        <router-link  :to="{name:'photo.share'}">
+		                    <span class="mui-icon mui-icon-home"></span>
+		                    <div class="mui-media-body">图片分享</div>
+                            
+                            </router-link>
+                            
+                            </li>
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        
+                        
+                             <router-link  :to="{name:'photo.goodsList'}">
+                                <span class="mui-icon mui-icon-home"></span>
+                                <div class="mui-media-body">商品展示</div>
+                            
+                            </router-link>
+                            
+                            
+                            </li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 		                    <span class="mui-icon mui-icon-location"></span>
 		                    <div class="mui-media-body">location</div></a></li>
@@ -84,10 +102,10 @@
 
             this.$ajax.get("getlunbo")
                 .then((res) => {
-                    console.log(res)
+                    // console.log(res)
                     this.lunbo = res.data.message
-                })
-        }
+             })
+        },
 
     }
 </script>
