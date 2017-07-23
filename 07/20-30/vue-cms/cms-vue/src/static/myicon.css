@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "iconfont";
+    src: url('iconfont.ttf') format('truetype');
+}
+
+.icon-m-members:before {
+    content: "\e6b8";
+}

@@ -1,4 +1,15 @@
 body {
     margin: 0;
-    padding: 0;
+    background-color: white;
+}
+
+.tmpl {
+    margin-bottom: 50px;
+}
+
+
+/*对于v-html内的标签在scoped 内的样式无法设置，时间节点不一致，1:取消scoped,2:全局设置，*/
+
+.news-content img {
+    width: 100%;
 }
