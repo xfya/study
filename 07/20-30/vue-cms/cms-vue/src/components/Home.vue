@@ -1,16 +1,7 @@
 <template>
   <div class="hello">
   <div class ="hello1">
-      <mt-swipe :auto="4000">
-        <mt-swipe-item v-for="(item,index) in pictures" :key="index">
-          <a :href = "item.url">
-            <img :src ="item.img"/>
-          </a>
-      
-        </mt-swipe-item>
-      
-    
-    </mt-swipe>
+      <lunbo :pictures="pictures"></lunbo>
    </div>
     <!--9 宫格  start-->
     <div class="mui-content">
@@ -55,6 +46,7 @@
 </template>
 
 <script>
+    import lunbo from './common/lunbo.vue'
     export default {
         name: 'home',
         data() {
@@ -69,6 +61,9 @@
                     console.log(res)
                     this.pictures = res.data.message
                 })
+        },
+        components: {
+            lunbo
         }
     }
 </script>

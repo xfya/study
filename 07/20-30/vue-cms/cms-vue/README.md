@@ -28,6 +28,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 <!--路由 重定向    redirect-->
 
 params  中  需要在路径中写入/:id
+query   中  不需要写入/:id
 
 
 
@@ -36,4 +37,9 @@ params  中  需要在路径中写入/:id
 
 
 #### vue  常见的bug 问题
+
+    loadBottom() {
+                console.log('下拉加载了')
+                this.$refs.loadmore.onBottomLoaded()  // 解决下拉刷新卡顿的问题  通知loadmore  结束
+            } 
 

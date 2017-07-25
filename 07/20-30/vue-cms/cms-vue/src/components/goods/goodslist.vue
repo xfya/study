@@ -1,10 +1,10 @@
 <template>
    <div style="height:100%">
         <nav-bar title="商品列表"></nav-bar>
-        <mt-loadmore :bottom-method="loadTop" :auto-fill='false'  @bottom-status-change="handdleBottomChange">
+        <mt-loadmore :bottom-method="loadBottom" :auto-fill='false' ref="loadmore"  @bottom-status-change="handdleBottomChange">
             <ul class="mui-table-view mui-grid-view">
                     <li v-for="goods in goodsList" :key="goods.id" class="mui-table-view-cell mui-media mui-col-xs-6">
-                        <a>
+                        <router-link :to="{name:'goods.detail',params:{gid:goods.id}}">
                             <img class="mui-media-object" :src="goods.img_url">
                             <div class="mui-media-body">{{goods.title}}</div>
                             <div class="desc">
@@ -21,7 +21,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
             </mt-loadmore>
@@ -43,15 +43,21 @@
             getGoodsList() {
                 this.$ajax.get('getgoods?pageindex=' + this.pageindex).then(res => {
                     console.log(res)
-                    this.goodsList = res.data.message;
+                    if (!res.data.message.length) return;
+                    this.pageindex++
+                        this.goodsList = this.goodsList.concat(res.data.message)
                 })
             },
             handdleBottomChange(s) {
                 console.log(s)
             },
-            loadTop() {
-                console.log('下拉加载了')
-            }
+            loadBottom() {
+
+                console.log(this.pageindex)
+                this.getGoodsList()
+                this.$refs.loadmore.onBottomLoaded()
+            },
+
         }
     }
 </script>

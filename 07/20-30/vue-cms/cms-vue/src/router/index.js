@@ -9,6 +9,7 @@ import search from '@/components/search.vue'
 import photeShare from '@/components/photeshare.vue'
 import phottoDetail from '@/components/phottodetail.vue'
 import goodsList from '@/components/goods/goodslist.vue'
+import goodsDetail from '@/components/goods/goodsdetail.vue'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
             path: '/goods/list',
             name: 'goods.list',
             component: goodsList
+        },
+        {
+            path: '/goods/detail/:gid',
+            name: 'goods.detail',
+            component: goodsDetail
         },
 
     ]
