@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+        autocompete  on 开启默认补全   默认的就是开启
+
+        off   关闭整个form  表单
+        novalidate   控制整个表单是否跳过整个校验
+        autofocus  自动获取整个焦点
+
+        placeholder    zi dong  huo qu j iao dian 
+         
+         pattern    dan du jiao yan  shu ju  ge shi 
+
+         datalist    yuan su   gui ding shu ru xiang  yong qu yu de lei biao 
+         audio  
+         src  
+
+
+         encodeURI
+
+
+         controls 
+
+         autoplay 
+
+         xhtml 是过度时期的 HTML 骨架   语法更严谨   是4.0 的升级版本
+         
+         video  
+
+
+
+
+
+
+
+
+
+    -->
+
+    <ul class="out">
+        <li>
+            <a href="#">国内新闻</a>
+            <ul>
+                <li><a href="javascript:;">北京新闻</a></li>
+                <li><a href="javascript:;">天津新闻</a></li>
+            </ul>
+        </li>
+        <li><a href="javascript:;">国际新闻</a></li>
+        <li><a href="javascript:;">体育新闻</a></li>
+        <li><a href="javascript:;">娱乐新闻</a></li>
+
+    </ul>
+
+
+    <script>
+        // var name = 'test'
+
+        window.onload = function() {
+            var lis = document.querySelectorAll(".out li")
+
+            console.log(lis.length)
+
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].style.background = "red"
+                lis[i].style.background = "red"
+            }
+        }
+    </script>
+</body>
+
+</html>

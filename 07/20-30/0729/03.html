@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var str = '<div>你好</div><div>吗</div><div>?</div>';
+        // var index = str.indexOf('吗')
+        // var getIndex = -1;
+        // var i;
+        // for (var i = index; i > 0; i++) {
+        //     if (str.charAt(i) == ">") {
+        //         break
+        //     }
+        // }
+
+        // var arr = str.split("");
+        // console.log(arr)
+        // arr.splice(i, 0, ' style="color: blue;"')
+        // var res2 = arr.join('');
+
+        // console.log(res2);
+        var data = [{
+            name: 'jim1',
+            age: 19,
+            gender: '女'
+        }, {
+            name: 'jim2',
+            age: 29,
+            gender: '男'
+        }, {
+            name: 'jim3',
+            age: 39,
+            gender: '女'
+        }, {
+            name: 'jim4',
+            age: 49,
+            gender: '男'
+        }, {
+            name: 'jim5',
+            age: 59,
+            gender: '男'
+        }];
+
+        // var table = [];
+        // table.push('<table style="border: 1px solid green;" border="1" width="600"><thead>')
+        // table.push('<th>编号</th>');
+        // table.push('<th>' + Object.keys(data[0]).join('</th><th>') + '</th>');
+        // table.push('</thead><tbody>');
+        // document.write(table)
+        // var obj = {
+        //     name: 'xfa',
+        //     gener: "nan",
+        //     age: 13,
+        //     test: 'hha'
+        // }
+        // console.log(Object.keys(obj))
+        // console.log(Object.values(obj))
+
+        var arr = [21, 1, 2, 3, 4, 5, 6, 7]
+        var res = arr.forEach(function(item, index, arr) {
+            item += 2;
+            arr[index] += 10
+            console.log(this)
+        })
+        console.log(res, arr)
+    </script>
+</body>
+
+</html>
