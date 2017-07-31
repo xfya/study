@@ -8,15 +8,57 @@
     <title>Document</title>
 </head>
 
-<body>
+<body itcast="传智播客">
+    <button>click</button>
+    <div>1</div>
+    <div class="c1">2</div>
+    <div>3</div>
+    <div class="c1">4</div>
+    <div>5</div>
+    <div class="c1">6</div>
+    <div>7</div>
+
+    <!--<img src="../0727/05.html" alt="">-->
     <script>
-        var arr = [1, 2, 3, 4, 5, 6, 7]
-        arr.forEach(function() {
-            console.log(this)
-        }, {
-            'name': 'xfa'
-        })
-        document.createElement('div')
+        // var text_node = document.createTextNode('文本标签');
+        // document.body.appendChild(text_node)
+        // var cc = doucument.body.getAttributeNode('')
+        // var img = document.getElementsByTagName('img')[0];
+        // var attrNode = document.createAttribute("title");
+        // console.log(attrNode)
+        // attrNode.nodeValue = "xfa"
+        // img.setAttributeNode(attrNode)
+        // var dvs = document.getElementsByClassName("c1");
+        // while (dvs.length > 0) {
+        //     dvs[0].parentNode.removeChild(dvs[0])
+        // }
+        // var arr = [1, 2, 3, 4, 5, 6, 7]
+        // arr.forEach(function() {
+        //     console.log(this)
+        // }, {
+        //     'name': 'xfa'
+        // })
+        // document.createElement('div')
+
+        // var attr = document.createAttribute("itcast");
+        // attr.nodeValue = "test";
+        // // docuemnt.body.setAttributeNode(attr)
+        // var attr = document.createAttribute('itcast');
+        // attr.nodeValue = "test";
+        // // document.body.setAttribute(attr)
+        // document.body.setAttributeNode(attr);
+
+        // 添加属性 使用 setAttributeNode
+
+        // var btn = document.getElementsByTagName("button")[0]
+
+        // btn.onclick = function() {
+        //     var attr = document.body.getAttributeNode("itcast");
+        //     attr.nodeValue = "test"
+        // }
+
+        var txt_node = document.createTextNode("wenbenbiaoqian ");
+        docuemnt.body.appendChild(text_node)
     </script>
 </body>
 

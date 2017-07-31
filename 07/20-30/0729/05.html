@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="dv"></div>
+    <!--<script>
+        var data = [{
+                name: 'jim1',
+                age: 19,
+                gender: '女'
+            }, {
+                name: 'jim2',
+                age: 29,
+                gender: '男'
+            }, {
+                name: 'jim3',
+                age: 39,
+                gender: '女'
+            }, {
+                name: 'jim4',
+                age: 49,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }, {
+                name: 'jim5',
+                age: 59,
+                gender: '男'
+            }
+
+        ]
+        var table = [];
+        table.push('<table style="border: 1px solid red;" border="1" width="600"><thead>')
+        table.push('<th>编号</th>');
+        for (var k in data[0]) {
+            table.push('<th>' + k + '</th>')
+        }
+        table.push("</thead><tbody>")
+
+        for (var i = 0; i < data.length; i++) {
+            table.push('<tr>')
+
+            table.push('<td>' + (i + 1) + '</td>')
+            for (var k in data[i]) {
+                table.push('<td>' + data[i][k] + '</td>')
+            }
+            table.push('</tr>');
+        }
+        table.push('</tbody></table>');
+        document.getElementById('dv').innerHTML = table.join('');
+    </script>-->
+
+    <script>
+        var data = [{
+            name: 'jim1',
+            age: 19,
+            gender: '女'
+        }, {
+            name: 'jim2',
+            age: 29,
+            gender: '男'
+        }, {
+            name: 'jim3',
+            age: 39,
+            gender: '女'
+        }, {
+            name: 'jim4',
+            age: 49,
+            gender: '男'
+        }, {
+            name: 'jim5',
+            age: 59,
+            gender: '男'
+        }];
+
+        function tag(tagName) {
+            return document.createElement(tagName)
+        }
+
+        function txt(context) {
+            return document.createTextNode(context)
+        }
+
+        function gId(idName) {
+            return document.getElementById(idName)
+        }
+
+        var table = tag('table');
+        table.border = 1;
+        table.setAttribute('width', '600');
+        var thead = tag('thead');
+        var tbody = tag('tbody');
+        table.appendChild(thead);
+        table.appendChild(tbody)
+    </script>
+</body>
+
+</html>

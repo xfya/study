@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--DOCTYPE    声明文档类型  告诉浏览器-->
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <!--
+
+        meta   标签作用  SEO  
+        只能写在网页头部
+
+        ‘utf-8  是一个编码集
+               gbk   Unicode  asinc
+
+    -->
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!--常见的浏览器-->
+    <!--谷歌 blink   火狐 Gecko      ie trient  欧朋 Presto    safari webkit    -->
+    <!--
+        web   标准
+
+        结构标准  html    超文本标记语言
+             01   标签  
+
+                单标签
+                 <hr>
+                 <br>
+                 <img src="" alt=" 图片加载失败  显示alt里面的文字 "   title="鼠标放上去显示title 里面的文字">
+                 <input type="text">   文本
+                 <input type="file"  multiple>   文本
+                 <input type="image">   图片
+                 <input type="password">  密码
+                 <input type="checkbox">   单选框
+                 <input type="radio" name="gener">   单选按钮
+                 <input type="url">   网址
+                 <input type="email">邮件
+                 <input type="tel">  电话
+                 <input type="time">
+                 <input type="data">
+                 <input type="week">
+                 <input type="search">
+                 <input type="color">
+
+
+                双标签
+                优化写法
+                <base target=”_blank”>  这个一定奥写在head 里面
+                <a href="#"  target ="_blank">超链接</a>
+                <a href="#"  target ="_self">下载</a>
+                <p>段落标签</p>
+                <div></div>
+                <h1></h1>
+                .   一个网页中只可以有一个h1  标签  为了seo  友好 
+                .  其他h2-h6  可以有多个吧
+                .
+                <h6></h6>
+
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <ol>
+                    <li></li>
+                </ol>
+
+                <dl>
+                    <dt></dt>
+                    <dt></dt>
+                    <dt></dt>
+                </dl>
+
+                <table  cellspacing="1"  cellpadding= "1">
+                        cellspacing   表格和表格之间的距离
+                        cellpadding    表格和文字之间的距离
+
+                        <tr>
+                            <td  colspan="2"   rowspan="2" ></td>
+                            colspan   水平方向 合并
+                            rowspan   垂直方向合并
+                        </tr> 
+                </table>
+
+                <form action="#">
+                    表单
+
+
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="" selected>2</option>
+                    </select>
+                </form>
+
+                <img src="图片路径" alt="替换文本"  title="鼠标放上显示文本">
+                路径  分为  相对路径和绝对路径
+                		◇文件在同一个目录
+                        直接写文件名即可
+                            ◇文件在上一级目录
+                            ../+文件名
+                            ◇文件在下一级目录
+                             目录名+/+文件名
+
+                如果只更改图片的宽度或者高度，那么图片等比例缩放。
+
+
+
+        样式标准   css    层叠样式表
+            外部      <link rel="stylesheet" href="index.css"> 
+            内部     
+                <style>
+                    .box{
+                        width:100px
+                    }
+                    .box2{
+                        width:200px
+                    }
+                </style>
+            内嵌      <div  style="background:red"></div>
+
+            选择器
+                标签选择器   div{ }   p{}
+                类选择器   .类名 {}
+                id 选择器  #id名字{}
+
+                id  是唯一的     类选择器 可以有多个  
+
+                *   通配图选择器
+                *{}
+
+
+                font 
+
+                font-style  规定字体样式
+              
+                font-weight  规定字体粗细
+                font-size/line-height  规定字体尺寸和行高。
+                font-family 
+                字体样式属性联写:
+                
+                font:字体风格 字体粗细 字体大小/字体行高 字体类型;
+                联写时，字体大小和字体类型是必写的，其他的根据需要可有可无。
+                样式属性名和值之间要用英文的冒号:分割。
+
+
+                background
+                background-color:
+                
+
+                行高：
+	            行高=上间距 + 文字 + 下间距
+
+
+                color
+                text-align
+                text-indent
+                letter-spacing
+                word-spacing
+                text-decoration
+                text-shadow 
+
+                a 
+                link
+                visited
+                hover
+                active
+
+
+                /**/
+
+                 :first-child 
+                 :last-child
+                 :nth-child
+                
+
+                元素之间的转换
+                块级元素
+                行内元素
+                行内快
+
+
+                选择器
+
+                子代选择器：
+
+                后代选择器：
+                
+                兄弟选择器：
+
+                交集选择器：
+
+
+            
+                                
+
+
+        行为标准  js      交互
+
+        
+
+        标签的语义化
+      
+          1:网页结构合理
+          2:有利于seo:和搜索引擎建立良好沟通，有了良好的结构和语义你的网页内容自然容易被搜索引擎抓取；
+          3:方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）
+          4:便于团队开发和维护
+
+
+
+    -->
+
+
+
+</body>
+
+</html>

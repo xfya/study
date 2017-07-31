@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var fib = (function() {
+        //     var cache = [1, 1];
+        //     return function(n) {
+        //         var item = cache[n];
+        //         return item || (cache[n] = fib(n - 1) + fib(n - 2))
+        //     }
+        // })()
+        // for (var i = 0; i < 1100; i++) {
+        //     console.log(fib(i));
+        // }
+        // var count = 0;
+        // var cache = [1, 1];
+
+        // function fib(n) {
+        //     count++;
+        //     var item = cache[n];
+        //     if (item) {
+        //         return item
+        //     } else {
+        //         var res = fib(n - 1) + fib(n - 2)
+        //         cache[n] = res;
+        //         return res
+        //     }
+        // }
+
+        // fib(1000);
+        // console.log(count);
+
+        // var fib = (function() {
+        //     var cache = [1, 1];
+        //     return function(n) {
+        //         var item = cache[n];
+        //         return item || (cache[n] = fib(n - 1) + fib(n - 2))
+        //     }
+        // })()
+
+        // console.log(fib(500))
+        function filter(arr, calback) {
+
+            var res = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (callback(arr[i], i)) {
+                    res.push(arr[i]);
+                }
+            }
+
+            return res
+        }
+    </script>
+</body>
+
+</html>
