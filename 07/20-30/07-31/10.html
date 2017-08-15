@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        a:link {
+            color: blue;
+        }
+        
+        a:visited {
+            color: blue;
+        }
+        
+        a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+        
+        .li2::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: url('img/li.gif') left bottom no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><img src="img/li.gif" alt=""><a href="#">  大明星将潮安</a></li>
+        <li><img src="img/li.gif" alt=""><a href="#">  大明星将潮安</a></li>
+        <li><img src="img/li.gif" alt=""><a href="#">  大明星将潮安</a></li>
+        <li><img src="img/li.gif" alt=""><a href="#">  大明星将潮安</a></li>
+        <li class="li2"><a href="#">  大明星将潮安</a></li>
+        <li class="li2"><a href="#">  大明星将潮安</a></li>
+        <li class="li2"><a href="#">  大明星将潮安</a></li>
+    </ul>
+</body>
+
+</html>
