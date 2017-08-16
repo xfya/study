@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+        <style>
+        input {
+            width: 300px;
+            height: 30px;
+            padding-left: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            outline-style: none;
+            margin: 10px;
+        }
+        span {
+            color: #ccc;
+        }
+        .right {
+            border: 1px solid yellowgreen;
+        }
+        .wrong {
+            border: 1px solid red;
+        }
+        .right-span {
+            color: yellowgreen;;
+        }
+        .wrong-span {
+            color: red;;
+        }
+    </style>
+
+</head>
+<body>
+       账号: <input type="text"/><span>请输入账号</span><br>
+    密码: <input type="password"/><span>请输入密码</span><br>
+
+    <script>
+        window.onload = function(){
+            var  inp = document.getElementsByTagName("input")[0];
+            var  span = document.getElementsByTagName('span')[0];
+
+            inp.onblur = function(){
+                if(this.value.length >=4 && this.value.length<20){
+                    this.className = "right";
+                    span.className = 'right-span'
+                      span.innerHTML = "恭喜您，输入正确！"
+                }else{
+                     this.className = "wrong";
+                    span.className = "wrong-span";
+                    span.innerHTML = "账号必须是4-20位之间";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

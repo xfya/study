@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+      <style>
+        input {
+            width: 300px;
+            height: 30px;
+            padding-left: 10px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        label {
+            position: absolute;
+            top: 75px;
+            left: 68px;
+            font-size: 20px;
+            cursor: text;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+        京东：<input type="text" value="乒乓球"/><br/>
+    淘宝：<label for="inp2">羽毛球</label><input id="inp2" type="text"/><br/>
+    placeholder: <input type="text" placeholder="橄榄球"/><br/>
+<script>
+      window.onload = function(){
+          var inpArr = document.getElementsByTagName('input');
+            var label = document.getElementsByTagName("label")[0];
+            inpArr[0].onfocus = function(){
+                if(this.value === "乒乓球"){
+                     this.value = "";
+                }
+            }
+            inpArr[0].onblur = function(){
+                if(this.value == ""){
+                    this.value = "乒乓球"
+                }
+            }
+
+
+            inpArr[1].oninput = inpArr[1].onprototypechange = function(){
+                if(this.value === ""){
+                    label.className = "";  
+                }else{
+                     label.className = "hide";
+                }
+            }
+     }  
+
+
+
+</script>
+
+</body>
+</html>

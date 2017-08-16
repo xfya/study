@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style lang="">
+         body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+
+        h1 {
+            color: #333;
+            background-color: transparent;
+        }
+
+        a {
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+
+        #imagegallery {
+
+            list-style: none;
+        }
+
+        #imagegallery li {
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            display: inline;
+        }
+
+        #imagegallery li a img {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+       <h2>
+        美女画廊
+    </h2>
+    <a href="#">注册</a>
+    <ul id="imagegallery">
+        <li>
+            <a href="image/1.jpg" title="美女A">
+                <img src="image/1-small.jpg" width="100" alt="美女1"/>
+            </a>
+        </li>
+        <li>
+            <a href="image/2.jpg" title="美女B">
+                <img src="image/2-small.jpg" width="100" alt="美女2"/>
+            </a>
+        </li>
+        <li>
+            <a href="image/3.jpg" title="美女C">
+                <img src="image/3-small.jpg" width="100" alt="美女3"/>
+            </a>
+        </li>
+        <li>
+            <a href="image/4.jpg" title="美女D">
+                <img src="image/4-small.jpg" width="100" alt="美女4"/>
+            </a>
+        </li>
+    </ul>
+
+
+    <div style="clear:both"></div>
+    <img id="image" src="image/placeholder.png" width="450px"/>
+    <p id="des">选择一个图片</p>
+
+    <script>
+        var ul = document.getElementById('imagegallery');
+        var  aArr = ul.getElementsByTagName("a");
+       var img = document.getElementById("image");
+       var p = document.getElementById("des");
+       for(var  i  = 0 ; i <aArr.length;i++){
+               aArr[i].onclick = function () {
+                   img.src = this.href;
+                   p.innerHTML = this.title
+                   return false
+
+               }
+       }
+   
+   
+    </script>
+
+</body>
+</html>

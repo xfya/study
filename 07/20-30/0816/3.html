@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+        <button>禁用</button>
+    <input type="text" value="我是input里面的内容"/>
+
+<!--
+    <script>
+        var  btn = document.getElementsByTagName("button")[0]
+        var  inp =document.getElementsByTagName('input')[0]
+
+        btn.onclick = function(){
+            if(this.innerHTML === "禁用"){
+                inp.disabled = true;
+                this.innerHTML = "解禁" 
+            }else{
+                inp.disabled = false;
+                this.innerHTML = "禁用"
+            }
+        }
+    </script>-->
+<script>
+    var  input = document.getElementsByTagName('input')[0]
+    input.onfocus = function(){
+        console.log(111);
+    }    
+
+    input.onblur = function(){
+        console.log(222)
+    }
+
+    input.oninput = input.onpropertychange = function(){
+        console.log(333)
+    }
+</script>
+
+
+</body>
+</html>

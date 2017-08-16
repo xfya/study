@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+        <style>
+        input {
+            width: 200px;
+            height: 30px;
+            border: 1px solid #ccc;
+            display: block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+        <button>获取值</button>
+    <button>赋值</button>
+
+    <input type="text"/>
+    <input type="text"/>
+    <input type="text"/>
+    <input type="text"/>
+    <input type="text"/>
+    <script>
+
+    var  btnArr = document.getElementsByTagName("button");
+    console.log(btnArr)
+    var inpArr = document.getElementsByTagName("input")
+         btnArr[0].onclick = function(){
+             var  str = "";
+             for(var  i = 0 ; i < inpArr.length;i++){
+                 str += inpArr[i].value
+             }
+
+             console.log(str)
+         }   
+
+         var arr = ["关羽","张飞","赵云","马超","黄忠"];
+
+         btnArr[1].onclick = function(){
+          
+             for(var  i = 0 ; i < inpArr.length;i++){
+                 inpArr[i].value = arr[i]
+             }
+         }
+    </script>
+</body>
+</html>
