@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 自执行函数
+        // (function() {
+        //     var a, b = 5;
+        // })();
+        // console.log(b); // 5 
+        // console.log(a); // 
+
+        // 2
+        // for (var i = 0; i < 5; i++) {
+        //     console.log(i)
+        //         //   setTimeout  异步     
+        //         // setTimeout(function() {
+        //         //     console.log(i); // 
+        //         // }, 0);
+        // }
+
+
+
+
+        // 3   定时器
+        // console.log(1)
+
+        // setTimeout(function() {
+        //     console.log(2)
+        // }, 10)
+
+        // console.log(3)
+
+        // setTimeout(function() {
+        //     console.log(4)
+        // }, 10)
+
+
+        // 4
+        // console.log(0.1 + 0.2 == 0.3, 0.2)
+
+
+        // 5
+        var a = 5;
+
+        function fn() {
+            a = 0;
+            alert(a); // 0 
+            alert(this.a); // 5    函数中  this  -> window 
+            var a;
+            alert(a) // undefined 0  baocuo   5   
+
+            // var a;
+            // a = 0;
+            // alert(a); // 0 
+            // alert(this.a); // 5    函数中  this  -> window    undefined
+
+            // alert(a) // undefined 0  baocuo   5   
+
+        }
+        // fn();
+
+        // new fn() // new 改变 this
+
+        // function Student() {
+        //     this.name1
+        //         // this.name = name
+        // }
+        // var st1 = new Student("小明")
+        // console.log(st1.name1)
+        // 6 
+
+        // var a
+
+        // console.log(typeof a)
+        // console.log(typeof b)
+        // console.log(b)
+
+        // 7
+
+        var undefined;
+        console.log(undefined === null) // false true   
+        console.log(1 == true) // true
+        console.log(0 == false) // true
+        console.log(2 == true) // true  false
+    </script>
+</body>
+
+</html>
