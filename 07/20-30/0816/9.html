@@ -101,7 +101,25 @@
         var theadInp = document.getElementById("theadInp");
         var tbody = document.getElementById("tbody");
          var inpArr = tbody.getElementsByTagName("input");
+         theadInp.onclick = function(){
+             for(var  i = 0 ; i <inpArr.length;i++ ){
+                 inpArr[i].checked = this.checked
+             }
+         }
 
+
+         for(var i  = 0 ; i <inpArr.length;i++ ){
+            inpArr[i].onclick = function(){
+                var bool = true;
+                for(var  j = 0 ; j < inpArr.length;j++){
+                    if(inpArr[j].checked === false){
+                        bool  = false
+                    }
+                }
+                                    theadInp.checked = bool;
+
+            }
+         }
 
     </script>
 </body>
