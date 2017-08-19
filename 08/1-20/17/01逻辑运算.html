@@ -10,10 +10,10 @@
 
 <body>
     <script>
-        var a = 3 || 1;
-        console.log(a)
-            // console.log(0 || 0)
-            //    0 false  ||   第一个真  就返回 
+        // var a = 3 || 1;
+        // console.log(a)
+        // console.log(0 || 0)
+        //    0 false  ||   第一个真  就返回 
 
         // var b = 2 && 0;
         // console.log(b)
@@ -26,6 +26,19 @@
 
         // var d = 5 && 6 || 4;
         // console.log(d)
+
+        var a = 10;
+
+        if (a > 5) {
+            a = a + 3;
+        } else if (a == 13) {
+            a = a + 4;
+        } else if (a == 17) {
+            a = a + 5;
+        } else {
+            a = a + 6;
+        }
+        console.log(a);
     </script>
 </body>
 

@@ -12,6 +12,68 @@
 
     <div width='100' height='100' style="width:500px"></div>
     <script>
+        // for (var i = 1; i < 10; i = i + 1) {
+        //     if (i % 2 == 0) {
+        //         i = i * 2;
+        //     }
+        //     console.log(i);
+        //     6
+        // }
+
+
+        // var a = 10;
+
+        // if (a > 5) {
+        //     a = a + 3;
+        // } else if (a == 13) {
+        //     a = a + 4;
+        // } else if (a == 17) {
+        //     a = a + 5;
+        // } else {
+        //     a = a + 6;
+        // }
+        // console.log(a);
+
+        // var a, b, c;
+        // a = "abc";
+        // b = 2;
+        // c = a + b;
+        // console.log(c);
+        // var sum = []
+        // for (var i = 1; i <= 100; i++) {
+        //     if (i % 3 == 0) {
+        //         sum.push(i)
+        //     }
+        // }
+        // console.log(sum)
+
+
+        function sum(arr) {
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += arr[i]
+            }
+
+            return sum;
+        }
+        arr = [1, 9, 3, 7, 5]
+        console.log(sum(arr))
+
+        for (var n = 1; n <= 9; n++) {
+
+            for (var m = 1; m < n + 1; m++) {
+
+                var b = m * n;
+
+                document.write(m + "×" + n + "=" + b + " " + " ");
+
+            }
+
+            document.write("<br/>");
+
+            document.write("<br/>");
+
+        }
     </script>
 </body>
 

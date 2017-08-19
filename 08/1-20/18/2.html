@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <select name="" id="sel1" size=10 multiple><!--multiple:多选-->
+        <option value="">北京</option>
+        <option value="">上海</option>
+        <option value="">广州</option>
+        <option value="">深圳</option>
+    </select>
+
+
+    <button>>>></button>
+    <button><<<</button>
+    <button>></button>
+    <button><</button>
+
+
+    <select name="" id="sel2" size=10 multiple></select>
+
+    <script>
+        var sel1 = document.getElementById('sel1');
+        var sel2 = document.getElementById('sel2');
+        var btnArr = document.querySelectorAll('button')
+        btnArr[0].onclick = function() {
+            var optArr = sel1.children;
+            for (var i = 0; i < optArr.length; i++) {
+                sel2.appendChild(optArr[i])
+                i--
+            }
+        }
+        btnArr[1].onclick = function() {
+            var optArr = sel2.children;
+            for (var i = 0; i < optArr.length; i++) {
+                sel1.appendChild(optArr[i])
+                i--
+            }
+        }
+        btnArr[2].onclick = function() {
+            var optArr = sel1.children;
+            for (var i = 0; i < optArr.length; i++) {
+                if (optArr[i].selected == true) {
+                    optArr[i].selected = false;
+                    sel2.appendChild(optArr[i]);
+                    i--;
+                }
+            }
+        }
+
+        btnArr[3].onclick = function() {
+            var optArr = sel2.children;
+            for (var i = 0; i < optArr.length; i++) {
+                if (optArr[i].selected == true) {
+                    optArr[i].selected = false;
+                    sel1.appendChild(optArr[i]);
+                    i--;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

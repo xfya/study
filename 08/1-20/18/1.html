@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <button>创建节点</button>
+
+    <ul>
+        <li>我是原生土著li1</li>
+        <!--<script>-->
+        <!--//优点，直接书写；-->
+        <!--document.write("<li>我是document.write()创建的li标签</li>")-->
+        <!--</script>-->
+    </ul>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var ul = document.getElementsByTagName("ul")[0];
+        console.log(btn)
+        btn.onclick = function() {
+            var newLi = document.createElement("li");
+            newLi.innerHTML = "我是document.createElement创建的li"
+            console.log(newLi);
+            ul.appendChild(newLi)
+
+        }
+
+        ul.children[0].onclick = function() {
+            alert(1)
+        }
+    </script>
+</body>
+
+</html>
