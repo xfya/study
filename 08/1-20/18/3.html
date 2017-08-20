@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function stu(name) {
+            this.name = name
+        }
+        var stu = new stu("zd");
+        var stu1 = stu
+        console.log(stu.name)
+        console.log(stu1.name)
+        fn(stu)
+        console.log(stu.name)
+
+        function fn(obj) {
+            obj.name = 'name'
+        }
+    </script>
+</body>
+
+</html>

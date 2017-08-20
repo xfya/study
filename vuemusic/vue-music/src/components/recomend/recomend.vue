@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class = "lunbo">
         
         <div class="slider-wraper">
             <slider>
-                <div v-for="(item,index) in recomends" :key="item.id">
+                <div   v-for="(item,index) in recomends" :key="item.id">
                     <a :href="item.linkUrl">
                         <img :src="item.picUrl" alt="">
                     </a>
@@ -35,7 +35,7 @@
             _getRecommend(){
                 getRecommend().then((res)=>{
                     if(res.code == ERR_OK){
-                        console.log(res.data.slider)
+                        // console.log(res.data.slider)
                         this.recomends = res.data.slider
                     }
                 })
