@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box1 {
+            position: relative;
+        }
+        
+        .box2 {
+            position: relative;
+        }
+        
+        .box3 {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <div class="box2">
+            <div class="box3">
+                日行一善，莫问前程...
+            </div>
+        </div>
+    </div>
+    <script>
+        // onmouseup  鼠标在事件源方
+        // onmousedown  鼠标在事件源按下时触发
+        // onmousemove   鼠标在事件源移动式触发
+        //   onkeydown   键盘按下时触发
+        // onkedown  键盘按下时 触发
+        //  和浏览器啊有关的事情
+        // onscroll  
+        // onresize
+
+        // var div = document.getElementsByTagName("div")[2];
+        // console.log(div.offsetParent)
+        //     //
+
+        var div = document.getElementsByTagName("div")[2];
+        console.log(div)
+        console.log(div.offsetWidth)
+        console.log(div.offsetHeight)
+    </script>
+</body>
+
+</html>

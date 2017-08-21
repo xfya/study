@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        button {
+            width: 100px;
+            height: 50px;
+            margin: 20px;
+            font: 500 22px/50px "simsun";
+        }
+        
+        .box1 {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            background-color: #eee;
+        }
+        
+        .box2 {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        
+        .box3 {
+            position: absolute;
+            top: 300px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <button>到200</button>
+    <button>到400</button>
+    <div class="box1">
+        <div class="box2" id="box2">
+            忠厚传家久，诗书济世长...
+        </div>
+        <div class="box3" id="box3">
+            忠厚传家久，诗书济世长...
+        </div>
+    </div>
+    <script>
+        // var btn = document.getElementsByTagName("button")[0];
+        // var box2 = document.getElementById('box2');
+        // btn.onclick = function() {
+        //     setInterval(function() {
+        //         box2.style.left = box2.offsetLeft + 10 + "px"
+        //     }, 30)
+        // }
+
+
+        var btn = document.getElementsByTagName("button");
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+        var timer = null;
+        console.log(btn)
+        btn[0].onclick = function() {
+            fn(box2, 500);
+            fn(box3, 500);
+        }
+        btn[1].onclick = function() {
+            fn(box2, 405.5);
+            fn(box3, 405.5);
+        }
+
+        function fn(ele, target) {
+            clearInterval(ele.timer);
+            ele.timer = setInterval(function() {
+                console.log(box2.offsetLeft)
+                var step = target > ele.offsetLeft ? 10 : -10;
+                ele.style.left = ele.offsetLeft + step + 'px';
+                if (Math.abs(target - ele.offsetLeft) < Math.abs(step)) {
+                    ele.style.left = target + 'px';
+                    clearInterval(ele.timer)
+                }
+            }, 30)
+
+        }
+    </script>
+</body>
+
+</html>
