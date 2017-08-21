@@ -9,6 +9,11 @@ import fastclick from 'fastclick'
 fastclick.attach(document.body);
 Vue.config.productionTip = false
 
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+    loading: require("common/img/1.gif")
+})
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

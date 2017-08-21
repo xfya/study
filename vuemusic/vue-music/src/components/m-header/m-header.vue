@@ -5,14 +5,17 @@
 </template>
 
 <script>
-    export default{
-         name: 'headers',
+    export default {
+        name: 'headers',
     }
 </script>
 
 <style lang="">
-
-    .header  img{
+    .header {
+        text-align: center;
+    }
+    
+    .header img {
         height: 50px;
     }
 </style>
