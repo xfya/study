@@ -2,7 +2,7 @@
     <div class = "lunbo">
         
         <div class="slider-wraper">
-            <slider>
+            <slider v-if="recomends.length">
                 <div   v-for="(item,index) in recomends" :key="item.id">
                     <a :href="item.linkUrl">
                         <img :src="item.picUrl" alt="">
@@ -21,27 +21,27 @@
     import {
         ERR_OK
     } from 'api/config'
-   import Slider from 'base/slider/slider.vue'
+    import Slider from 'base/slider/slider.vue'
     export default {
-        data(){
-            return{
-                recomends:[]
+        data() {
+            return {
+                recomends: []
             }
         },
-        created(){
-             this._getRecommend()
+        created() {
+            this._getRecommend()
         },
-        methods:{
-            _getRecommend(){
-                getRecommend().then((res)=>{
-                    if(res.code == ERR_OK){
+        methods: {
+            _getRecommend() {
+                getRecommend().then((res) => {
+                    if (res.code == ERR_OK) {
                         // console.log(res.data.slider)
                         this.recomends = res.data.slider
                     }
                 })
             }
         },
-        components:{
+        components: {
             Slider
         }
     }

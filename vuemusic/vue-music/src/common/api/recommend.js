@@ -1,4 +1,4 @@
-import jsonp from '../js/jsonp.js';
+import jsonp from 'common/api/js/jsonp.js';
 import { commonParmms, options } from './config.js'
 export function getRecommend() {
     const url = "https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg";
