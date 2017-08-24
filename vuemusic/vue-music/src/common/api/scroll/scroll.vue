@@ -6,7 +6,8 @@
     </div>
 </template>
 <script>
-    import Bscroll from "better-scroll"
+  
+    import Bscroll from 'better-scroll'
     export default {
         props: {
             probeType: {
@@ -37,6 +38,11 @@
                     probeType: this.probeType,
                     click: this.click
                 })
+
+                this.scroll = new Bscroll(this.$refs.wrapper, {
+                    probeType: this.probeType,
+                    click: this.click
+                })
             },
             enable() {
                 this.scroll && this.scroll.enable()
@@ -53,7 +59,6 @@
                 setTimeout(() => {
                     this.refresh()
                 }, 20)
-
             }
         }
     }

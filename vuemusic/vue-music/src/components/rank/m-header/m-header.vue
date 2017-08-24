@@ -13,8 +13,15 @@
 <style lang="">
     .header {
         text-align: center;
+            background: #31c27c;
+            position: relative;
+            z-index: 1000;
     }
-    
+    .slider{
+        background-color: #fff;
+        position: relative;
+        z-index:100;
+    }
     .header img {
         height: 50px;
     }

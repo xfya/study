@@ -21,6 +21,7 @@
 </script>
 
 <style scoped lang="">
+  
     .tab{
         display: flex;
            height: 40px;
@@ -28,6 +29,10 @@
         overflow: hidden;
         text-align: center;
         color: rgba(0,0,0,.6);
+        position: relative;
+        z-index:1000;
+      background: #fff;
+
        
         /*background-color: palevioletred;*/
     }
@@ -35,7 +40,7 @@
         flex:1
     }
     .tab div.router-link-active{
-         color:#31c27c;
+         color:#000;
         border-bottom:2px solid #31c27c;
     }
 </style>

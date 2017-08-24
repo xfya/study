@@ -191,24 +191,22 @@
     }
 
     left.onclick = function() {
-        if (pic == 0) {
-            ul.style.left = -imgWidth * (ulLis.length - 1) + "px";
-            pic = ulLis.length - 1;
-        }
         pic--;
-
-        if (square >= 0) {
-            square == olLis.length - 1
-        } else {
-            square--
+        square--;
+        if (square == -1) {
+            square = olLis.length - 1;
         }
-        //干掉所有人
+
+        if (pic == -1) {
+            ul.style.left = -(ulLis.length - 1) * imgWidth + "px"; //显示倒数第一张，left值就为：-5张图片的宽；
+            pic = ulLis.length - 2;
+        }
+        console.log(pic)
         for (var i = 0; i < olLis.length; i++) {
             olLis[i].className = "";
         }
-        console.log(square)
+        //留下当前的
         olLis[square].className = "current";
-
 
         var target = -pic * imgWidth;
         animate(ul, target);
@@ -225,5 +223,9 @@
             }
 
         }, 15)
+
+
+
+
     }
 </script>

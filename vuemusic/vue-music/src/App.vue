@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import headers from './components/m-header/m-header.vue';
-    import tabs from './components/tab/tab.vue';
+    import headers from '@/components/rank/m-header/m-header.vue';
+    import tabs from '@/components/tab/tab.vue';
     export default {
         name: 'app',
         components: {

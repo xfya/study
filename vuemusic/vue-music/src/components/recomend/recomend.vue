@@ -10,7 +10,7 @@
                 </div>
             </slider>
         </div> 
-        <div class="recommon_list" :data ="disList">
+        <scroll class="recommon_list" :data ="disList">
             <div>
                 <div class="recommome_title">热门歌单推荐</div>
                 <ul>
@@ -25,7 +25,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </scroll>
     </div>
 </template>
 
@@ -34,8 +34,6 @@
         getRecommend,
         getDataList
     } from 'api/recommend.js'
-
-
     import {
         ERR_OK
     } from 'api/config'
@@ -67,7 +65,6 @@
                     this.disList = res.data.list
                 })
             }
-
         },
         components: {
             Slider,
@@ -81,7 +78,9 @@
         display: flex;
         height: 65px;
     }
-    
+    .recommon_list{
+        height: 400px;
+    }
     .recommome_title {
         text-align: center
     }
