@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 114px;
+            height: 104px;
+            position: absolute;
+        }
+        
+        body {
+            padding: 0;
+            margin: 0;
+            width: 5000px;
+            height: 5000px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="images/img1.png" alt="" />
+    <script>
+        var img = document.getElementsByTagName("img")[0];
+        document.onmousemove = function(event) {
+            var pagex = event.pageX || event.clientX + scrollLeft();
+            var pagey = event.pageY || event.clientY + scrollTop();
+            img.style.top = pagey - img.offsetHeight / 2 + "px";
+            img.style.left = pagex - img.offsetWidth / 2 + "px";
+        }
+
+        function scrollTop() {
+            return window.pageYOffset || document.documentElement.scrollTop;
+
+        }
+
+        function scrollLeft() {
+            return window.pageXOffset || document.documentElement.scrollLeft;
+        }
+    </script>
+</body>
+
+</html>

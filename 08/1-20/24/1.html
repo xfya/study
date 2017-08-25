@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // document.onclick = function(e) {
+        //     console.log(e.pageX)
+        //     console.log(1)
+        //     console.log(e)
+        //     console.log(event.target)
+        // }
+
+        document.onclick = function() {
+            var event = event || window.event;
+            console.log(event.pageY)
+
+            var y = event.pageY || event.clientY + scrollTop();
+            console.log(y)
+        }
+
+        function scrollTop() {
+            return window.pageYOffset || document.documentElement.scrollTop;
+
+        }
+
+        function scrollLeft() {
+            return windwo.pageXoffset || docuemnt.documentElement.scrollLeft
+        }
+    </script>
+</body>
+
+</html>

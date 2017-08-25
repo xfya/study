@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        
+        .big {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .mask {
+            width: 175px;
+            height: 175px;
+            background: rgba(255, 255, 0, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+        
+        .small {
+            position: relative;
+        }
+        
+        img {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <!--左侧盒子-->
+        <div class="small" id="small">
+            <img src="images/001.jpg" alt="" />
+            <!--黄盒子-->
+            <div class="mask" id="mask"></div>
+        </div>
+        <!--右侧盒子-->
+        <div class="big" id="big">
+            <!--大图片-->
+            <img style="position: absolute;" src="images/0001.jpg" alt="" />
+        </div>
+    </div>
+
+    <script>
+        function scrollTop() {
+            return window.pageYOffset || document.documentElement.scrollTop;
+
+        }
+
+        function scrollLeft() {
+            return window.pageXOffset || document.documentElement.scrollLeft;
+        }
+
+        function changeBodyBG() {
+            //判断：大于960背景色为红；小于640位黄；两者之间为蓝;
+            if (clientWidth() > 960) {
+                document.body.bgColor = "red";
+                //                }else if(clientWidth() <= 960 && clientWidth() > 640){
+            } else if (clientWidth() > 640) {
+                document.body.bgColor = "blue";
+            } else {
+                document.body.bgColor = "yellow";
+            }
+        }
+
+        //封装一个方法：获取浏览器可视区域的宽;
+        function clientWidth() {
+            return window.innerWidth || document.documentElement.clientWidth;
+        }
+
+
+        //封装获取页面被遮挡的顶部和左侧部分
+        function scrollTop() {
+            return window.pageYOffset || document.documentElement.scrollTop;
+        }
+
+        function scrollLeft() {
+            return window.pageXOffset || document.documentElement.scrollLeft;
+        }
+
+
+        //显示和隐藏
+        function show(ele) {
+            ele.style.display = "block";
+        }
+
+        function hide(ele) {
+            ele.style.display = "none";
+        }
+        var box = document.getElementById("box");
+        var small = document.getElementById("small");
+        var mask = document.getElementById("mask");
+        var big = document.getElementById("big");
+        var bigImg = big.getElementsByTagName("img")[0];
+        small.onmouseenter = function() {
+            show(mask);
+            show(big);
+        }
+
+        small.onmouseleave = function() {
+            //隐藏黄盒子和大盒子
+            hide(mask);
+            hide(big);
+        }
+
+        small.onmousemove = function(event) {
+            var event = event || window.event;
+            var pagey = event.pageY || event.clientY + scrollTop();
+            var pagex = event.pageX || event.clientX + scrollLeft();
+            var boxx = box.offsetLeft; //因为small的父盒子box带有定位，所以不能用small.offset；要用0+box.offset;
+            var boxy = box.offsetTop; //因为small的父盒子box带有定位，所以不能用small.offset；要用0+box.offset;
+            var x = pagex - boxx - mask.offsetWidth / 2;
+            var y = pagey - boxy - mask.offsetHeight / 2;
+
+            mask.style.top = y + "px";
+            mask.style.left = x + "px";
+            var bili2 = (bigImg.offsetWidth - big.offsetWidth) / (small.offsetWidth - mask.offsetWidth);
+
+            var yy = bili2 * y;
+            var xx = bili2 * x;
+            bigImg.style.marginTop = -yy + "px";
+            bigImg.style.marginLeft = -xx + "px";
+
+
+        }
+    </script>
+</body>
+
+</html>
