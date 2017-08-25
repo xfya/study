@@ -1,10 +1,13 @@
 <template>
 <scroll class ="listview"  :data ="data" ref ="listview">
     <ul>
-        <li v-for = "group in data" ref="listgroup">
+        <li v-for="group in data"  :key="group.id"
+        ref="listgroup" 
+       
+        >
             <h2 class="list-group-title">{{group.title}}</h2>
             <ul>
-                <li class="list-group-item" v-for = "item in group.items ">
+                <li class="list-group-item" v-for="item in group.items " :key=""  @click="selectItem(item)">
                     <img class ="avatar" :src="item.avatar" alt="">
                     <span class="name">{{item.name}}</span>
                 </li>
@@ -88,6 +91,9 @@
               this.scrollY = pos.y
               console.log(pos.y)
           },
+          selectItem(item){
+              this.$emit('select',item)
+          },
           _scrollTo(anchorIndex){
             //   scrollToElement   第二个参数表示是否需要缓动函数
            this.$refs.listview.scrollToElement(this.$refs.listgroup[anchorIndex],0)
@@ -113,7 +119,13 @@
                 },20)
             },
             scrollY(newY){
-                const listHeight = this.listHeight
+                alert(1)
+                    const listHeight = this.listHeight
+                if(newY > 0){
+                     this.currentIndex = 0;
+                     return;
+                }
+
                 for(let i = 0 ; i < listHeight.length;i++){
                     let height1 = listHeight[i]
                     let height2 = listHeight[i+1]
@@ -122,6 +134,8 @@
                         console.log(this.currentIndex)
                     }
                 }
+
+                this.currentIndex =listHeight.length -2 ;
             }
         }
     }

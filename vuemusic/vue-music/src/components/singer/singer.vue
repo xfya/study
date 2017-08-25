@@ -1,7 +1,12 @@
 <template>
     <div>
         
-        <ListView :data = "singers"></ListView>    
+        <ListView 
+        :data = "singers"
+        @select="selectSinger"
+        
+        ></ListView>    
+        <router-view></router-view>
     </div>
 </template>
 
@@ -38,6 +43,12 @@ import ListView from '@/base/listview/listview'
                
              this.singers  =  this._formatSingers(res.data.list);
             //   console.log(this.singers)
+            },
+            selectSinger(item){
+                this.$router.push({
+                    // this.$router.push({})  路径要写绝对路径
+                    path:`/singer/${item.id}`
+                })
             },
             _normalizeSinger(list){
                 let map = {

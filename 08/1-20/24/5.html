@@ -8,21 +8,33 @@
 
 <body>
     <script>
-        var arr = "get-element-by-id";
-        var str1 = arr.split("-")
-        console.log(str1)
+        // 编写一个函数，将如下字符串'get-element-by-id'修改为驼峰表示法'getElementById'
+        // var str = 'get-element-by-id';
+        // var arr = str.split("-");
+        // console.log(arr);
+        // for (var i = 1; i < arr.length; i++) {
+        //     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
 
-        for (var i = 1; i < str1.length; i++) {
-            str1[i] = str1[i].charAt(0).substr(1)
+        // }
+
+        // console.log(arr.join(""))
+
+        var str = 'get-element-by-id-aa-bb-bbb';
+
+        function tuoPeng(str) {
+
+            var arr = str.split("-");
+            // console.log(arr);
+            for (var i = 1; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+
+            }
+
+            console.log(arr.join(""))
+            return arr.join("")
         }
-        // // splice() 方法用于插入、 删除或替换数组的元素。
-        // // slice() 方法可从已有的数组中返回选定的元素。
-        // console.log(str1.splice(1, 2))
 
-        // console.log(str1)
-
-
-        var event = event || window.event;
+        console.log(tuoPeng(str))
     </script>
 
 </body>
