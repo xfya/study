@@ -40,6 +40,39 @@ apiRoutes.get('/getDiscList', function(req, res) {
         console.log(e)
     })
 })
+apiRoutes.get('/getLyric', function(req, res) {
+    var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
+
+    axios.get(url, {
+            headers: {
+                referer: 'https://c.y.qq.com/',
+                host: 'c.y.qq.com'
+            },
+            params: req.query
+        })
+        .then((response) => {
+            // jsonp 数据转为 json 数据
+            var result = response.data
+
+            if (typeof result === 'string') {
+                var reg = /^\w+\(({[^()]+})\)$/
+                var matches = result.match(reg)
+
+                if (matches) {
+                    result = JSON.parse(matches[1])
+                }
+            }
+
+            res.json(result)
+                // res.json(response.data)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
+
+
+
 
 app.use('/api', apiRoutes)
     // 配置反向代理 end

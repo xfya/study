@@ -1,26 +1,25 @@
 import originJSONP from 'jsonp'
 
+function param(data) {
+    let url = ''
+    for (let i in data) {
+        let value = (data[i] !== undefined) ? data[i] : ''
+        url += `&${i}=${encodeURIComponent(value)}`
+    }
+    // 删掉第一个 &
+    return url ? url.substring(1) : ''
+}
 
-export default function jsonp(url, data, option) {
-    url += (url.indexOf('?') < 0 ? "?" : '' + param(data))
+export default function jsonp(url, data, opts) {
+    url += ((url.indexOf('?') === -1) ? '?' : '&') + param(data)
 
-    return new Promise((resove, reject) => {
-        originJSONP(url, option, (err, data) => {
+    return new Promise((resolve, reject) => {
+        originJSONP(url, opts, (err, data) => {
             if (!err) {
-                resove(data)
+                resolve(data)
             } else {
                 reject(err)
             }
         })
     })
-}
-
-function param(data) {
-    let url = '';
-    for (var k in data) {
-        let value = data[k] == undefined ? data[k] : '';
-        url += `&${k}=${encodeURIComponent(value)}`
-    }
-
-    return url ? url.substring(1) : ''
 }

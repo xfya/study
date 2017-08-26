@@ -9,8 +9,30 @@
 
 
 <script>
+import {mapGetters} from "vuex"
+import {getSingerDetail,getSingerDetail1} from "@/common/api/single.js"
     export default{
-
+        computed:{
+            ...mapGetters([
+                "singer"
+            ])
+        },
+        created(){
+            this.getDetail()
+            console.log(this.singer.id,"test vuex")
+        },
+        methods:{
+            getDetail(){
+                if(!this.singer.id){
+                    this.$router.push({
+                        path:'/singer'
+                    })
+                }
+                getSingerDetail1(this.singer.id).then((res)=>{
+                    console.log(res)
+                })
+            }
+        }
     }
 </script>
 

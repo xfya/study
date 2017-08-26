@@ -1,9 +1,10 @@
 export const commonParmms = {
-    g_tk: 5381,
-    uin: 0,
-    format: 'json',
+
+    g_tk: 1928093487,
+    format: 'jsonp',
     inCharset: 'utf-8',
     outCharset: 'utf-8',
+    notice: 0
 
 
 }

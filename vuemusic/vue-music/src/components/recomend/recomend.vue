@@ -61,7 +61,7 @@
             },
             _getDataList() {
                 getDataList().then((res) => {
-                    console.log(res.data.list)
+                    // console.log(res.data.list)
                     this.disList = res.data.list
                 })
             }

@@ -16,7 +16,9 @@
 import {getSinglerList} from 'api/single'
 import singer from 'api/js/singer.js'
 import axios from "axios"
-import ListView from '@/base/listview/listview'  
+import ListView from '@/base/listview/listview' 
+
+import {mapMutations}  from "vuex"
 
     const HOT_TITLE = '热门'
     const HTO_NUM = 10
@@ -35,7 +37,7 @@ import ListView from '@/base/listview/listview'
         },
         methods:{
             _getSingerList(){
-                console.log('res')
+                // console.log('res')
                 // getSinglerList().then((res)=>{
                 //     console.log(res)
                 // })
@@ -44,11 +46,13 @@ import ListView from '@/base/listview/listview'
              this.singers  =  this._formatSingers(res.data.list);
             //   console.log(this.singers)
             },
-            selectSinger(item){
+            selectSinger(singer){
                 this.$router.push({
                     // this.$router.push({})  路径要写绝对路径
-                    path:`/singer/${item.id}`
+                    path:`/singer/${singer.id}`
                 })
+
+                this.setSinger(singer)
             },
             _normalizeSinger(list){
                 let map = {
@@ -121,10 +125,12 @@ import ListView from '@/base/listview/listview'
                     return a.title.charCodeAt(0) - b.title.charCodeAt(0)
                 })
 
-                console.log(hot.concat(others))
+                // console.log(hot.concat(others))
                 return hot.concat(others)
             },
-        
+            ...mapMutations({
+                setSinger:"SET_SINGER"
+            })
         },
         components:{
             ListView

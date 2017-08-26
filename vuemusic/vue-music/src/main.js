@@ -1,6 +1,6 @@
 // 编译es6 的代码
 import "babel-polyfill"
-
+import store from './store'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -18,5 +18,6 @@ Vue.use(VueLazyload, {
 new Vue({
     el: '#app',
     router,
+    store,
     render: h => h(App)
 })
