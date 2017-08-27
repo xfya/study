@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var paramsFun = function(a, b) {
+        //     console.log(arguments)
+        //     if (2 in arguments) return 'two params' // 当第二个参数（下标是1）
+        //     else return 'one params'
+        // }
+
+        // console.log(paramsFun(121, 2, 3, 4, 5, 56, 7, 4)) // 'two params'
+        // paramsFun(2) // 'one params'
+
+
+        // var arr = [1, 2, 3, 4, 56, 7];
+        // console.log(1 in arr) -- >
+
+
+        // //     1
+        // var paramsFun = function(a, b) {
+        //     return (1 in arguments && 'two params') || 'one params'
+        // }
+        // paramsFun(2, 4) // 'two params' paramsFun(2) // 'one params'
+
+
+
+        // var uniq = function(array) {
+        //     return [].filter.call(array, function(item, idx) {
+        //         return array.indexOf(item) == idx
+        //     })
+        // }
+        // uniq([1, 2, 3, 3]) // (3) [1, 2, 3]
+
+
+        // var x = {}
+        // x.y = {}
+
+        // x.y.z = function() {
+        //     console.log(this)
+        // }
+
+        // x.y.z() // {z: ƒ}
+
+        function CreateObj(uName, uAge) {
+            this.userName = uName;
+            this.userAge = uAge;
+        }
+        CreateObj.prototype.showUserName = function() {
+            return this.userName;
+        }
+        CreateObj.prototype.showUserAge = function() {
+            return this.userAge;
+        }
+
+        CreateObj.prototype = {
+            showUserAge: function() {
+                return this.userAge;
+            },
+            showUserName: function() {
+                return this.userName;
+            },
+        }
+        var obj1 = new CreateObj('ghostwu', 22);
+        var obj2 = new CreateObj('卫庄', 24);
+        console.log(obj1.showUserName(), obj1.showUserAge()); //ghostwu 22
+        console.log(obj2.showUserName(), obj2.showUserAge()); //卫庄 24
+
+        console.log(CreateObj.prototype.constructor === CreateObj);
+        console.log(CreateObj.prototype.constructor);
+        
+
+    </script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 <template>
 <transition name="slide">    
   <div>
-      123  singer-detail
+     <musiclist :title="title" :songs="songs" :bgImage="bgImage"></musiclist>
   </div>
 
   </transition>
@@ -11,15 +11,31 @@
 <script>
 import {mapGetters} from "vuex"
 import {getSingerDetail,getSingerDetail1} from "@/common/api/single.js"
+import {createSong} from "@/common/api/js/song.js"
+import musiclist from "@/components/music-list/music-list.vue"
     export default{
+        data(){
+            return{
+                  songs:[]
+            }
+          
+        },
         computed:{
+            title(){
+                return this.singer.name
+            },
+             bgImage(){
+                return this.singer.avatar
+            },
             ...mapGetters([
                 "singer"
             ])
         },
         created(){
-            this.getDetail()
-            console.log(this.singer.id,"test vuex")
+           setTimeout(()=>{
+               this.getDetail()
+           },20)
+            // console.log(this.singer.id,"test vuex")
         },
         methods:{
             getDetail(){
@@ -29,9 +45,29 @@ import {getSingerDetail,getSingerDetail1} from "@/common/api/single.js"
                     })
                 }
                 getSingerDetail1(this.singer.id).then((res)=>{
-                    console.log(res)
+                    // console.log(res.data)
+                    this.songs= this._normalizeSongs(res.data.list)
+                     console.log( this.songs)
                 })
+            },
+            _normalizeSongs(list){
+                   let result = []
+
+                list.forEach((item) => {
+                    // 解构赋值
+                  
+                    let musicData = item.musicData
+                    // console.log(musicData.songid,musicData.albummid)
+                    if (musicData.songid && musicData.albummid) {
+                      result.push(createSong(musicData))
+                    }
+                })
+
+                return result
             }
+        },
+        components:{
+            musiclist
         }
     }
 </script>
