@@ -11,7 +11,7 @@ export const sequenceList = state => state.sequenceList
 export const mode = state => state.mode
 export const currentIndex = state => state.currentIndex
 
-export const currentSong = (state) => {
-        return state.playList[state.currentIndex]
-    }
+
+
+export const currentSong = (state) => state.playlist[state.currentIndex] || {}
     //   getter  可以做简单的代理 换可以做计算属性在里面

@@ -2,9 +2,9 @@
   <div id="app">
    <headers></headers>
    <tabs></tabs>
-   <keep-alive>
+
         <router-view></router-view>
-   </keep-alive>
+
    <player></player>
  
   </div>
@@ -20,7 +20,7 @@
         components: {
             headers,
             tabs,
-player
+            player
         }
     }
 </script>
@@ -36,5 +36,6 @@ player
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
+        position: relative;
     }
 </style>

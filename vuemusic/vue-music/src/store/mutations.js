@@ -12,8 +12,8 @@ const matutations = {
     [types.SET_FULL_SCREEN](state, flag) {
         state.fullScreen = flag;
     },
-    [types.SET_PLAY_LIST](state, list) {
-        state.playlist = list
+    [types.SET_PLAYLIST](state, list) {
+        state.playList = list
     },
     [types.SET_SEQUENCE_LIST](state, list) {
         state.sequenceList = list

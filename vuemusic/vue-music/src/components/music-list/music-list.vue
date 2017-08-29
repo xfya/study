@@ -18,6 +18,9 @@
 <script>
     import scroll from 'api/scroll/scroll.vue'
     import songlist from 'base/song-list/song-list.vue'
+    import {mapActions}  from 'vuex'
+    
+    
     export default{
           props: {
             // 背景图
@@ -51,7 +54,15 @@
         methods:{
             selectItem(item,index){
                 console.log(item,index,"test")
-            }
+                this.selectPlay({
+                    list:this.songs,
+                    index
+                })
+
+            },
+            ...mapActions([
+                'selectPlay'
+            ])
         }
     }
 </script>

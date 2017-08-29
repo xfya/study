@@ -47,7 +47,7 @@ import musiclist from "@/components/music-list/music-list.vue"
                 getSingerDetail1(this.singer.id).then((res)=>{
                     // console.log(res.data)
                     this.songs= this._normalizeSongs(res.data.list)
-                     console.log( this.songs)
+                    //  console.log( this.songs)
                 })
             },
             _normalizeSongs(list){
