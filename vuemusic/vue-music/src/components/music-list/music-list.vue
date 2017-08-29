@@ -9,7 +9,7 @@
       </div>
       <scroll class="music-list">
           <div class="song-list-wraper">
-              <songlist :songs="songs"></songlist>
+              <songlist @select="selectItem" :songs="songs"></songlist>
           </div>
       </scroll>
   </div>   
@@ -47,6 +47,11 @@
         components:{
             scroll,
             songlist
+        },
+        methods:{
+            selectItem(item,index){
+                console.log(item,index,"test")
+            }
         }
     }
 </script>

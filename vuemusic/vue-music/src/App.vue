@@ -5,6 +5,7 @@
    <keep-alive>
         <router-view></router-view>
    </keep-alive>
+   <player></player>
  
   </div>
 </template>
@@ -12,12 +13,14 @@
 <script>
     import headers from '@/components/rank/m-header/m-header.vue';
     import tabs from '@/components/tab/tab.vue';
+    import player from "@/components/player/player"
+  
     export default {
         name: 'app',
         components: {
             headers,
-            tabs
-
+            tabs,
+player
         }
     }
 </script>
