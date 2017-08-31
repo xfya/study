@@ -2,15 +2,15 @@ import * as types from './mutation-types.js'
 
 
 
-const matutaions = {
+const mutations = {
     [types.SET_SINGER](state, singer) {
         state.singer = singer
     },
-    [types.SET_PLSYING_STATE](state, flag) {
+    [types.SET_PLAYING_STATE](state, flag) {
         state.playing = flag
     },
     [types.SET_FULL_SCREEN](state, flag) {
-        state.fullScreen = flag;
+        state.fullScreen = flag
     },
     [types.SET_PLAYLIST](state, list) {
         state.playlist = list
@@ -28,4 +28,4 @@ const matutaions = {
 }
 
 
-export default matutaions
+export default mutations

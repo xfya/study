@@ -5,6 +5,7 @@ export const singer = state => state.singer
 //   currentIndex  可以由别的属性计算出来
 
 export const playing = state => state.playing
+
 export const fullScreen = state => state.fullScreen
 export const playlist = state => state.playlist
 export const sequenceList = state => state.sequenceList

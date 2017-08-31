@@ -34,7 +34,7 @@ import musiclist from "@/components/music-list/music-list.vue"
         created(){
            setTimeout(()=>{
                this.getDetail()
-           },20)
+           },40)
             // console.log(this.singer.id,"test vuex")
         },
         methods:{
