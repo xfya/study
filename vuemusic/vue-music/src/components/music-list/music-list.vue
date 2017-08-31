@@ -53,7 +53,6 @@
         },
         methods:{
             selectItem(item,index){
-                console.log(item,index,"test")
                 this.selectPlay({
                     list:this.songs,
                     index

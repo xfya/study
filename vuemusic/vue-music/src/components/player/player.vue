@@ -1,20 +1,25 @@
 <template>
-  <div class="play" v-show ="playList.length>0">
+  <div class="play" v-show ="playlist.length>0">
       <div class="normal-player" v-show="fullScreen">
              <div class="background">
-                 <img src="" alt="">
+                 <img :src="currentSong.img" alt="">
                  <div @click="back">
                      123 <br>
                      123
                  </div>
              </div>
             <div class="top">
-
+                <h1 class="name" v-html="currentSong.name"></h1>
+                <h1 class="singer" v-html="currentSong.singer"></h1>
+                    {{currentSong}}
             </div>
       </div>
       <div class="min-plaer" v-show="!fullScreen">
             <div class="left">
-                
+                 <img :src="currentSong.img" alt="">
+                   <h1 class="name" v-html="currentSong.name"></h1>
+                <h1 class="singer" v-html="currentSong.singer"></h1>
+           
             </div>
       </div> 
   </div>
@@ -24,30 +29,34 @@
 
 <script>
 import {mapGetters,mapMutations} from 'vuex';
+
     export default{
         computed:{
             ...mapGetters([
                 'fullScreen',
-                'playList',
+                'playlist',
                 'currentIndex',
                 'currentSong'
             ]),
           
         }, 
         created(){
-            console.log(this.currentIndex)
-            console.log(this.playList)
-            // console.log(this.currentSong)
+            // console.log(this.currentIndex,'currentIndex')
+            // console.log(this.playlist,'playList')
+            // console.log(this.currentSong,"currentSong")
             
         },
         methods:{
-              ...mapMutations([{
+        
+               back(){
+                   console.log(this.setFullScreen)
+                   this.setFullScreen(false)
+              },
+                    ...mapMutations([{
+           
                    setFullScreen:'SET_FULL_SCREEN'
               }  
             ]),
-               back(){
-                  console.log(this.setFullScreen)
-              }
         }
     }
 </script>

@@ -2,7 +2,7 @@ import * as types from './mutation-types.js'
 
 
 
-const matutations = {
+const matutaions = {
     [types.SET_SINGER](state, singer) {
         state.singer = singer
     },
@@ -13,7 +13,7 @@ const matutations = {
         state.fullScreen = flag;
     },
     [types.SET_PLAYLIST](state, list) {
-        state.playList = list
+        state.playlist = list
     },
     [types.SET_SEQUENCE_LIST](state, list) {
         state.sequenceList = list
@@ -28,4 +28,4 @@ const matutations = {
 }
 
 
-export default matutations
+export default matutaions

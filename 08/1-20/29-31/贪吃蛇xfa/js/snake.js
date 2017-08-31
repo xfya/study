@@ -17,6 +17,8 @@
     }
 
     Snake.prototype.render = function(map) {
+
+        remove();
         for (var i = 0; i < this.body.length; i++) {
             var obj = this.body[i];
             var div = document.createElement('div');
@@ -27,6 +29,7 @@
             div.style.backgroundColor = obj.color;
             div.style.width = this.width + 'px';
             div.style.height = this.height + 'px';
+            elements.push(div);
         }
     }
 
@@ -51,6 +54,17 @@
                 this.body[0].y += 1;
                 break;
         }
+    }
+
+    function remove() {
+        var i = elements.length - 1;
+        for (; i >= 0; i--) {
+            // 删除页面上渲染的蛇
+            elements[i].parentNode.removeChild(elements[i]);
+            // 删除elements数组中的元素
+            elements.splice(i, 1);
+        }
+
     }
 
 

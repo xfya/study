@@ -9,14 +9,10 @@
     Game.prototype.start = function() {
         this.food.render(this.map);
         this.snake.render(this.map);
-
-
-        this.snake.move(this.food, this.map);
-        this.snake.render(this.map);
-
-        this.snake.move(this.food, this.map);
-        this.snake.render(this.map);
-
+        // 私有方法
+        runSnake(this.snake, this.map);
+        // 键盘控制蛇的移动
+        bindKey();
 
     }
 

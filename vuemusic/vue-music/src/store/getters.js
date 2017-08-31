@@ -6,12 +6,16 @@ export const singer = state => state.singer
 
 export const playing = state => state.playing
 export const fullScreen = state => state.fullScreen
-export const playList = state => state.playList
+export const playlist = state => state.playlist
 export const sequenceList = state => state.sequenceList
 export const mode = state => state.mode
 export const currentIndex = state => state.currentIndex
 
 
 
-export const currentSong = (state) => state.playlist[state.currentIndex] || {}
+export const currentSong = (state) => {
+        return state.playlist[state.currentIndex] || {}
+    }
     //   getter  可以做简单的代理 换可以做计算属性在里面
+
+//   通过 mapgetters  拿到这个里面的数据
