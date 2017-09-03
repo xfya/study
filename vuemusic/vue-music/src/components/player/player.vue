@@ -13,7 +13,9 @@
             <div class="top">
                 <h1 class="name" v-html="currentSong.name"></h1>
                 <h1 class="singer" v-html="currentSong.singer"></h1>
-               <progress-bar :precent="precent"></progress-bar>
+               <progress-bar
+                @precentChange = "onProgressBarChange"
+                :precent="precent"></progress-bar>
                
                 <p class= "jindutiao">
                     {{ format(currentTime)}}
@@ -75,11 +77,11 @@
 
         },
         created() {
-            alert(3)
-                // console.log(this.currentIndex,'currentIndex')
-                // console.log(this.playlist,'playList')
-                // console.log(this.currentSong,"currentSong")
-                // console.log(this)
+            // alert(3)
+            // console.log(this.currentIndex,'currentIndex')
+            // console.log(this.playlist,'playList')
+            // console.log(this.currentSong,"currentSong")
+            // console.log(this)
 
         },
         data() {
@@ -119,6 +121,10 @@
 
 
 
+            },
+            onProgressBarChange(precent) {
+                // 7-13
+                this.$refs.audio.currentTime = this.currentSong.duration * precent
             },
             ready() {
                 this.songReady = true

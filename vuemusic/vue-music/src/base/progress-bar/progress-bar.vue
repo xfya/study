@@ -2,7 +2,11 @@
     <div class="progress-bar" ref="progressBar">
         <div class="bar-banner">
             <div class="progress" ref="progress"></div>
-            <div ref="progressBtn" class="progress-btn-wrper">
+            <div ref="progressBtn"
+            @touchstart.prevent ="progressTouchStart"
+            @touchmove.prevent="progressTouchMove"
+            @touchend.prevent="progressTouchEnd"
+             class="progress-btn-wrper">
                 <div class="progress-btn">
                     
                 </div>
@@ -17,6 +21,7 @@
     export
     default {
         created() {
+            this.touch = {}
             console.log(this.precent)
         },
         props: {
@@ -30,13 +35,41 @@
         watch: {
             precent(newPrecent) {
 
-                if (newPrecent >= 0) {
+                if (newPrecent >= 0 && !this.touch.initiated) {
                     const barWidth = this.$refs.progressBar.clientWidth - progressBtn;
                     const offsetWidth = newPrecent * barWidth
-                    console.log(offsetWidth)
-                    this.$refs.progress.style.width = offsetWidth + "px"
-                    this.$refs.progressBtn.style.transform = `translate3d(${offsetWidth}px,0,0)`
+                        // console.log(offsetWidth)
+                    this._offset(offsetWidth)
                 }
+            }
+        },
+        methods: {
+            progressTouchStart(e) {
+                this.touch.initiated = true
+                this.touch.startX = e.touches[0].pageX;
+                this.touch.left = this.$refs.progress.clientWidth;
+            },
+            progressTouchMove(e) {
+                if (!this.touch.initiated) {
+                    return;
+                }
+                const deltaX = e.touches[0].pageX - this.touch.startX;
+                const offsetWidth = Math.min(this.$refs.progressBar.clientWidth - progressBtn, Math.max(0, this.touch.left + deltaX))
+                this._offset(offsetWidth)
+            },
+            progressTouchEnd(e) {
+                this.touch.initiated = false;
+                this._triggerPrecent()
+            },
+            _offset(offsetWidth) {
+                this.$refs.progress.style.width = offsetWidth + "px"
+                this.$refs.progressBtn.style.transform = `translate3d(${offsetWidth}px,0,0)`
+
+            },
+            _triggerPrecent() {
+                const barWidth = this.$refs.progressBar.clientWidth - progressBtn;
+                const precent = this.$refs.progress.clientWidth / barWidth
+                this.$emit("precentChange", precent)
             }
         }
 
