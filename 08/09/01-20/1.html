@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Ipone(color, price, size) {
+            this.color = color;
+            this.price = price;
+            this.size = size;
+        }
+        Ipone.prototype.callPhone = function() {
+            console.log('phone.....')
+        }
+        var iphone1 = new Ipone("red", "1000$", 4.5);
+        console.log(iphone1)
+        console.log(iphone1.callPhone())
+    </script>
+</body>
+
+</html>

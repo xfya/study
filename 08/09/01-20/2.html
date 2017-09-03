@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #box,
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+        
+        #box2 {
+            background-color: blue;
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+    <script>
+        ;
+        (function(window) {
+            function Drag(id) {
+                this.obj = document.getELmentById(id);
+                this.disX = 0;
+                this.disY = 0;
+                this.init();
+            }
+            Drag.prototype.init = function() {
+                var that = this;
+                this.obj.onmousedown = function(e) {
+                    e = e || event;
+                    that.disX = e.clientX - this.offsetLeft;
+                    that.disY = e.clientY - this.offsetTop;
+                    document.onmousemove = function(e) {
+                        that.fnMove(e)
+                    }
+                    document.onmouseup = that.fnUp
+                }
+            }
+
+            Drag.prototype.fnUp = function() {
+                docuemnt.onmouseleave = document.onmousemove = null;
+            }
+
+        })()
+    </script>
+</body>
+
+</html>

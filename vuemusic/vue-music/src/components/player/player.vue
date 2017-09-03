@@ -13,10 +13,15 @@
             <div class="top">
                 <h1 class="name" v-html="currentSong.name"></h1>
                 <h1 class="singer" v-html="currentSong.singer"></h1>
+               <progress-bar :precent="precent"></progress-bar>
+               
+                <p class= "jindutiao">
+                    {{ format(currentTime)}}
+                </p>
                    <div class="playmusi">
-                       <div class="prev">上一个</div>
+                       <div @click="prev" class="prev">上一个</div>
                        <div @click="togglePlaying" ref="bofang"   class="current">播放</div>
-                       <div class="next">下一个</div>
+                       <div class="next"  @click="next">下一个</div>
                    </div>
             </div>
       </div>
@@ -32,15 +37,15 @@
                 </div>
                 <div class="bottom">
                      <div class="playmusi">
-                       <div class="prev">上一个</div>
+                       <div class="prev"  @click.stop="prev">上一个</div>
                        <div @click.stop="togglePlaying"   class="current">播放</div>
-                       <div class="next">下一个</div>
+                       <div class="next" @click.stop="next">下一个</div>
                    </div>
                 </div>
                
         </div> 
       </transition>
-      <audio ref="audio" :src="currentSong.url"></audio>
+      <audio @timeupdate = 'updateTime' @canplay="ready" ref="audio" :src="currentSong.url"></audio>
   </div>
 
 
@@ -48,8 +53,13 @@
 
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
-import animations from 'create-keyframe-animation'
+    import progressBar from 'base/progress-bar/progress-bar'
+    import {
+        mapGetters,
+        mapMutations,
+        mapActions
+    } from 'vuex'
+    import animations from 'create-keyframe-animation'
     export default {
         computed: {
             ...mapGetters([
@@ -59,63 +69,125 @@ import animations from 'create-keyframe-animation'
                 'currentSong',
                 'playing'
             ]),
+            precent() {
+                return this.currentTime / this.currentSong.duration
+            }
 
         },
         created() {
-            // console.log(this.currentIndex,'currentIndex')
-            // console.log(this.playlist,'playList')
-            // console.log(this.currentSong,"currentSong")
-            // console.log(this)
+            alert(3)
+                // console.log(this.currentIndex,'currentIndex')
+                // console.log(this.playlist,'playList')
+                // console.log(this.currentSong,"currentSong")
+                // console.log(this)
 
         },
-        watch:{
-            currentSong(){
-                this.$nextTick(()=>{
-                     this.$refs.audio.play()
+        data() {
+            return {
+                songReady: false,
+                currentTime: 0
+            }
+        },
+        watch: {
+            currentSong() {
+                this.$nextTick(() => {
+                    this.$refs.audio.play()
                 })
-               
-            },
-            playing(newPlaying){
-               const audio = this.$refs.audio;
-                 this.$nextTick(()=>{
-                if(newPlaying){
-                    audio.play()
-                    this.$refs.bofang.innerHTML= '播放'
 
-                }else{
-                    audio.pause()
-                      this.$refs.bofang.innerHTML= '暂停'
-                }
-          })
-            //    newPlaying?audio.play():audio.pause()
+            },
+            playing(newPlaying) {
+                const audio = this.$refs.audio;
+                this.$nextTick(() => {
+                        if (newPlaying) {
+                            audio.play()
+                            this.$refs.bofang.innerHTML = '播放'
+
+                        } else {
+                            audio.pause()
+                            this.$refs.bofang.innerHTML = '暂停'
+                        }
+                    })
+                    //    newPlaying?audio.play():audio.pause()
             }
 
         },
         methods: {
 
             back() {
-                 console.log( this.setfullScreen(false));
-                 this.setfullScreen(false)
-                //  console.log( this.currentSong);
-                //  this.fullScreen = false
-                // this.setfullScreen(false)
+
+                this.setfullScreen(false)
+
 
 
             },
-              open() {
+            ready() {
+                this.songReady = true
+            },
+            open() {
                 this.setfullScreen(true)
-                },
-                togglePlaying(){
-                    console.log(this.playing)
-                    this.setPlayingState(!this.playing)
-                },
+            },
+            togglePlaying() {
+
+                this.setPlayingState(!this.playing)
+            },
+            next() {
+                // alert(1)
+                if (!this.songReady) {
+                    return;
+                }
+                let index = this.currentIndex + 1
+
+                if (index == this.playlist.length) {
+                    index = 0;
+                }
+                this.setCurrentIndex(index)
+                this.songReady = false;
+            },
+
+            prev() {
+                if (!this.songReady) {
+                    return;
+                }
+                let index = this.currentIndex - 1
+
+                if (index == -1) {
+                    index = this.playlist.length - 1;
+                }
+                this.setCurrentIndex(index)
+                this.songReady = false;
+            },
             ...mapMutations({
-                    setfullScreen: 'SET_FULL_SCREEN',
-                    setPlayingState: 'SET_PLAYING_STATE',
-                    setCurrentIndex: 'SET_CURRENT_INDEX',
-                    setMode: 'SET_MODE',
-                    setPlayList: 'SET_PLAYLIST'
+                setfullScreen: 'SET_FULL_SCREEN',
+                setPlayingState: 'SET_PLAYING_STATE',
+                setCurrentIndex: 'SET_CURRENT_INDEX',
+                setMode: 'SET_MODE',
+                setPlayList: 'SET_PLAYLIST'
             }),
+            updateTime(e) {
+                this.currentTime = e.target.currentTime;
+                // this.currentTime = e.target.currentTime
+                // console.log(this.currentTime);
+            },
+            format(interval) {
+                interval = interval | 0 //  |0表示向下取整
+                let minute = this._pad(interval / 60 | 0);
+                // console.log(this.currentSong)
+                let second = interval % 60;
+                second = second >= 10 ? second : '0' + second
+                return ` ${minute} : ${second}`
+            },
+            _pad(num, n = 2) {
+                // console.log(this.precent, 'xfa')
+                let len = num.toString().length;
+                while (len < n) {
+                    num = "0" + num;
+                    len++
+                }
+                return num
+            },
+        },
+        components: {
+            progressBar
         }
     }
 </script>
@@ -123,12 +195,14 @@ import animations from 'create-keyframe-animation'
 
 
 <style>
-.left{
-    float: left;
-}
-.bottom{
-      float: left;
-}
+    .left {
+        float: left;
+    }
+    
+    .bottom {
+        float: left;
+    }
+    
     .min-plaer {
         height: 50px;
         width: 100%;
@@ -145,42 +219,65 @@ import animations from 'create-keyframe-animation'
         top: 0;
         z-index: 10001
     }
-   .normal-player  .background{
-       text-align: center;
-       margin: 5px;
-   }
-     .normal-player  .background img{
-         border-radius: 50%;
-     }
-      .normal-player  .background div{
-          margin-top: 20px;
-      }
-    .min-plaer  .left img{
+    
+    .normal-player .background {
+        text-align: center;
+        margin: 5px;
+    }
+    
+    .normal-player .background img {
+        border-radius: 50%;
+    }
+    
+    .normal-player .background div {
+        margin-top: 20px;
+    }
+    
+    .min-plaer .left img {
         height: 50px;
         margin-left: 20px;
     }
-
-    .normal-enter-active,.normal-leave-active{
+    
+    .jindutiao {
+        font-size: 16px;
+        padding: 10px 5px;
+        line-height: 36px;
+        color: #fff;
+    }
+    
+    .normal-enter-active,
+    .normal-leave-active {
         transition: all 0.4s;
     }
-     .normal-enter-active .top,.normal-leave-active  .top,.normal-enter-active .bottom,.normal-leave-active  .bottom{
-          transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32);
-     }
-
-     .normal-enter,.normal-leave-to{
-       opacity: 0;
+    
+    .normal-enter-active .top,
+    .normal-leave-active .top,
+    .normal-enter-active .bottom,
+    .normal-leave-active .bottom {
+        transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32);
     }
-   .normal-enter .top,.normal-leave-to  .top{
-           transform: translate3d(0, -100px, 0);
-     }
-     .normal-enter .bottom,.normal-leave-to  .bottom{
-          transform: translate3d(0, 100px, 0);
-     }
-    .playmusi{
-        display:flex;
+    
+    .normal-enter,
+    .normal-leave-to {
+        opacity: 0;
     }
-    .playmusi div{
-        flex:1;
+    
+    .normal-enter .top,
+    .normal-leave-to .top {
+        transform: translate3d(0, -100px, 0);
+    }
+    
+    .normal-enter .bottom,
+    .normal-leave-to .bottom {
+        transform: translate3d(0, 100px, 0);
+    }
+    
+    .playmusi {
+        display: flex;
+    }
+    
+    .playmusi div {
+        flex: 1;
         line-height: 70px;
         text-align: center;
     }
