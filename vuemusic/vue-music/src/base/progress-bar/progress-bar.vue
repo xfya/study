@@ -1,5 +1,5 @@
 <template>
-    <div class="progress-bar" ref="progressBar">
+    <div class="progress-bar" @click = "progressClick" ref="progressBar">
         <div class="bar-banner">
             <div class="progress" ref="progress"></div>
             <div ref="progressBtn"
@@ -65,6 +65,10 @@
                 this.$refs.progress.style.width = offsetWidth + "px"
                 this.$refs.progressBtn.style.transform = `translate3d(${offsetWidth}px,0,0)`
 
+            },
+            progressClick(e) {
+                this._offset(e.offsetX)
+                this._triggerPrecent()
             },
             _triggerPrecent() {
                 const barWidth = this.$refs.progressBar.clientWidth - progressBtn;

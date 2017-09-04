@@ -43,6 +43,9 @@
                        <div @click.stop="togglePlaying"   class="current">播放</div>
                        <div class="next" @click.stop="next">下一个</div>
                    </div>
+                   <progress-circle>
+                       <i class="icon-mini"></i>
+                   </progress-circle>
                 </div>
                
         </div> 
@@ -56,6 +59,7 @@
 
 <script>
     import progressBar from 'base/progress-bar/progress-bar'
+    import progressCircle from 'base/progress-bar/progress-cile'
     import {
         mapGetters,
         mapMutations,
@@ -125,6 +129,9 @@
             onProgressBarChange(precent) {
                 // 7-13
                 this.$refs.audio.currentTime = this.currentSong.duration * precent
+                if (!this.playing) {
+                    this.togglePlaying()
+                }
             },
             ready() {
                 this.songReady = true
@@ -193,14 +200,17 @@
             },
         },
         components: {
-            progressBar
+            progressBar,
+            progressCircle
         }
     }
 </script>
 
 
 
-<style>
+<style lang="scss">
+    @import '~@/common/scss/const.scss';
+    @import '~@/common/scss/mymixin.scss';
     .left {
         float: left;
     }
@@ -286,5 +296,19 @@
         flex: 1;
         line-height: 70px;
         text-align: center;
+    }
+    
+    .progress-circle {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        /*background: red;*/
+    }
+    
+    .icon-mini {
+        font-size: 32px;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 </style>
