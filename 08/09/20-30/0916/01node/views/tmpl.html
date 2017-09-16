@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>art-template123</h1>
+    <h3>{{username}}</h3>
+    <h3>{{age}}</h3>
+    <h3>{{gender}}</h3>
+
+    <ul>
+        <!--hobby是一个数组，   ['吃饭', '睡觉', '打豆豆']-->
+        {{each hobby}}
+        <li>{{$value}}</li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
