@@ -7,7 +7,8 @@ const state = {
         playlist: [],
         sequenceList: [],
         mode: playMode.sequence,
-        currentIndex: -1
+        currentIndex: -1,
+        disc: {}
     }
     // 只保留基础的数据
 

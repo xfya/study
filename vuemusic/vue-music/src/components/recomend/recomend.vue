@@ -14,7 +14,7 @@
             <div>
                 <div class="recommome_title">热门歌单推荐</div>
                 <ul>
-                    <li v-for ="(item ,index) in disList">
+                    <li @click= "selectItem(item)" v-for ="(item ,index) in disList">
                         <div class="icon">
                             <img width="60" height="60" v-lazy="item.imgurl" alt="">
                         </div>
@@ -26,6 +26,7 @@
                 </ul>
             </div>
         </scroll>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -37,6 +38,9 @@
     import {
         ERR_OK
     } from 'api/config'
+    import {
+        mapMutations
+    } from 'vuex'
     import Slider from 'base/slider/slider.vue'
     import scroll from 'api/scroll/scroll.vue'
     export default {
@@ -51,7 +55,15 @@
             this._getDataList()
         },
         methods: {
+            selectItem(item) {
+                this.$router.push({
+                    path: `/recomend/${item.dissid}`
+                })
+
+                this.setDisc(item)
+            },
             _getRecommend() {
+
                 getRecommend().then((res) => {
                     if (res.code == ERR_OK) {
                         // console.log(res.data.slider)
@@ -64,7 +76,10 @@
                     // console.log(res.data.list)
                     this.disList = res.data.list
                 })
-            }
+            },
+            ...mapMutations({
+                setDisc: 'SET_DISC'
+            })
         },
         components: {
             Slider,
@@ -78,9 +93,11 @@
         display: flex;
         height: 65px;
     }
-    .recommon_list{
+    
+    .recommon_list {
         height: 400px;
     }
+    
     .recommome_title {
         text-align: center
     }

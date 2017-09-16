@@ -20,6 +20,10 @@
                 <p class= "jindutiao">
                     {{ format(currentTime)}}
                 </p>
+                <div class="bofangmoshi" @click="changeMode">
+                    <div class="test" :class ="iconMode"></div>
+                    播放模式
+                </div>
                    <div class="playmusi">
                        <div @click="prev" class="prev">上一个</div>
                        <div @click="togglePlaying" ref="bofang"   class="current">播放</div>
@@ -43,14 +47,16 @@
                        <div @click.stop="togglePlaying"   class="current">播放</div>
                        <div class="next" @click.stop="next">下一个</div>
                    </div>
-                   <progress-circle>
-                       <i class="icon-mini"></i>
+                   <progress-circle  :percent = "precent" :bbb="precent">
+                    
                    </progress-circle>
                 </div>
                
         </div> 
       </transition>
-      <audio @timeupdate = 'updateTime' @canplay="ready" ref="audio" :src="currentSong.url"></audio>
+      <audio @timeupdate = 'updateTime'
+        @ended="end"  
+       @canplay="ready" ref="audio" :src="currentSong.url"></audio>
   </div>
 
 
@@ -66,6 +72,12 @@
         mapActions
     } from 'vuex'
     import animations from 'create-keyframe-animation'
+    import {
+        playMode
+    } from 'api/js/config.js'
+    import {
+        shuffle
+    } from 'api/js/util.js'
     export default {
         computed: {
             ...mapGetters([
@@ -73,10 +85,17 @@
                 'playlist',
                 'currentIndex',
                 'currentSong',
-                'playing'
+                'playing',
+                'mode',
+                'sequenceList'
             ]),
             precent() {
+                // console.log(this.currentTime, this.currentSong.duration)
                 return this.currentTime / this.currentSong.duration
+            },
+            iconMode() {
+                return this.mode === playMode.sequence ?
+                    'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
             }
 
         },
@@ -91,13 +110,16 @@
         data() {
             return {
                 songReady: false,
-                currentTime: 0
+                currentTime: 0,
+                aaa: 450
             }
         },
         watch: {
             currentSong() {
                 this.$nextTick(() => {
                     this.$refs.audio.play()
+                    console.log(this.currentSong.getLyric())
+
                 })
 
             },
@@ -126,6 +148,26 @@
 
 
             },
+            changeMode() {
+                // const mode = (this.mode+1)%3
+                // this.setPlayMode(mode)
+                // let  list = null;
+                // if(mode == playMode.random){
+                //     list = shuffle(this.sequenceList)
+                // }else{
+                //     list = this.sequenceList
+                // }
+
+                // this.resetCurrentIndex(list)
+                // this.setPlayList(list)
+
+            },
+            resetCurrentIndex(list, song) {
+                // let index = list.findIndex((item)=>{
+                //     return item.id = this.currentSong.id
+                // })
+                // this.setCurrentIndex(index)
+            },
             onProgressBarChange(precent) {
                 // 7-13
                 this.$refs.audio.currentTime = this.currentSong.duration * precent
@@ -142,6 +184,9 @@
             togglePlaying() {
 
                 this.setPlayingState(!this.playing)
+            },
+            end() {
+                this.next()
             },
             next() {
                 // alert(1)
@@ -173,7 +218,7 @@
                 setfullScreen: 'SET_FULL_SCREEN',
                 setPlayingState: 'SET_PLAYING_STATE',
                 setCurrentIndex: 'SET_CURRENT_INDEX',
-                setMode: 'SET_MODE',
+                setPlayMode: 'SET_PLAY_MODE',
                 setPlayList: 'SET_PLAYLIST'
             }),
             updateTime(e) {
@@ -211,6 +256,28 @@
 <style lang="scss">
     @import '~@/common/scss/const.scss';
     @import '~@/common/scss/mymixin.scss';
+    .icon-sequence {
+        background: red;
+        position: relative;
+    }
+    
+    .icon-sequence::after {
+        content: "正常播放";
+        position: absolute;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        line-height: 30px;
+    }
+    
+    .icon-loop {
+        background: yellow;
+    }
+    
+    .icon-random {
+        background: green;
+    }
+    
     .left {
         float: left;
     }
@@ -225,6 +292,13 @@
         background-color: #000000;
         position: fixed;
         bottom: 0;
+    }
+    
+    .test {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: 5px;
     }
     
     .normal-player {
@@ -310,5 +384,9 @@
         position: absolute;
         left: 0;
         top: 0;
+    }
+    
+    .icon-play-mini:before {
+        content: "\E903";
     }
 </style>
