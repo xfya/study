@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点击创建球队</button>
+
+    <div id="box">
+
+    </div>
+
+    <script>
+        // 通过DOM实现列表高亮显示效果：
+        //  页面中有一个按钮和一个div标签, 
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        btn.onclick = function() {
+
+
+                if (!document.getElementById('ul-item')) {
+                    var ul = document.createElement('ul');
+                    ul.id = "ul-item";
+                    box.appendChild(ul);
+                    for (var i = 0; i < 5; i++) {
+                        var li = document.createElement('li');
+                        li.innerHTML = "球队" + (i + 1);
+                        ul.appendChild(li)
+
+                        //   鼠标进入某个球队则显示高亮效果(改变背景颜色即可)，
+                        //    鼠标离开某个球队则失去高亮效果(背景颜色还原即可)。 
+
+                        li.onmouseenter = function() {
+                            this.style.background = "red";
+                        }
+                        li.onmouseleave = function() {
+                            this.style.background = "";
+                        }
+
+                    }
+
+                }
+            }
+            //  点击按钮在div标签中以无序列表的方式动态创建5个球队，
+
+        //    要求: 使用createElement() 方法进行元素创建， 并且页面中只能存在一对ul标签。
+    </script>
+</body>
+
+</html>

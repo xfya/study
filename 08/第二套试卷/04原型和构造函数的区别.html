@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn(age) {
+            this.age = age;
+            this.eat = function() {
+                console.log('eat ...')
+            }
+
+        }
+
+        fn.prototype.say = function() {
+
+        }
+        fn.prototype.name = 'xfa';
+        var f1 = new fn('x');
+        var f2 = new fn('y');
+        console.log(f1.eat == f2.eat)
+        console.log(fn == fn)
+        console.log(f1.say == f2.say)
+        console.log(f1.name, f2.name);
+        f1.name = 'zs';
+        console.log(f2.name)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var age = 24;
+
+        function Fn() {
+            this.age = 18;
+            setTimeout(function() {
+
+
+
+                //this代表window
+                console.log(this);
+                //输出24，而不是Fn的18
+                console.log(this.age);
+            }, 1000);
+        }
+        // var a = new Fn();
+        // console.log(a)
+
+
+        var obj = {
+            id: "xyz",
+            printId: function() {
+                console.log('The id is ' + this.id + ' ' + this.toString());
+            }
+        };
+        obj.printId(); //这是第一行输出
+        var callback = obj.printId;
+        callback(); //这是第二行输出
+        setTimeout(obj.printId, 1000); //这是第三行输出
+    </script>
+</body>
+
+</html>

@@ -1,10 +1,15 @@
 var http = require('http');
-var router = require('./router.js');
-var server = http.createServer();
-server.on('request', (req, res) => {
 
+
+var server = http.createServer();
+
+server.listen(3000, () => {
+    console.log('server  is  runing...');
 })
 
-server.listen(3001, () => {
-    console.log('server listen at http://127.0.0.1:3001');
+
+server.on('request', function(req, res) {
+    let url = req.url;
+    console.log(url)
+
 })

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hero - Admin</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .hero-list img {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="page-header container">
+            <h1>亡者农药 <small>英雄管理器</small></h1>
+        </div>
+    </header>
+    <div class="container hero-list">
+        <a class="btn btn-success pull-right" href="/add">添加英雄</a>
+        <table class="table table-hover">
+            <thead>
+                <th>编号</th>
+                <th>名称</th>
+                <th>性别</th>
+                <th>头像</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+
+                {{each list}}
+                <tr>
+                    <td>{{$value.id}}</td>
+                    <td>{{$value.name}}</td>
+                    <td>{{$value.gender}}</td>
+                    <td><img src="{{$value.avatar}}" alt=""></td>
+                    <td>
+                        <a href="/info?id={{$value.id}}">查看</a>
+                        <a href="">编辑</a>
+                        <a href="">删除</a>
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

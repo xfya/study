@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // 通过原型的方式实现动物类继承
+        function Animal(gender, age) {
+            // 动物都有性别和年龄
+            this.gender = gender;
+            this.age = age;
+        }
+        Animal.prototype.eat = function() {
+            // 动物都有吃东西的行为
+            console.log('动物都有吃东西的行为')
+        }
+
+        function Dog(color) {
+            // 狗都有毛色。
+            this.color = color;
+        }
+
+        Dog.prototype = new Animal('公', 17);
+
+
+        Dog.prototype.lookHome = function() {
+            // 狗都有看家的行为,，
+            console.log('狗都有看家的行为')
+        }
+
+
+
+        var dog = new Dog('red');
+
+        console.log(dog.eat() + '---' + dog.lookHome())
+
+        // 要求实例化对象,并调用吃和看家的方法
+    </script>
+</body>
+
+</html>

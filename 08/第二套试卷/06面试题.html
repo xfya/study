@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: "zs",
+            age: 12
+        }
+        var newObj = obj;
+        newObj.point = 'point';
+        console.log(newObj) //     name: "zs",   age: 12  point
+
+
+        newObj = {
+            gener: '男',
+            height: 178
+        }
+        console.log(newObj) // gener: '男',    height: 178
+        console.log(obj) //   gener: '男',    height: 178   name: "zs",   age: 12  point   || point
+    </script>
+</body>
+
+</html>
