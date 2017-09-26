@@ -21,6 +21,21 @@ module.exports = {
         getAll(callback)
 
     },
-    getHeroById() {},
+    getHeroById(id, callback) {
+        // 获取所有的英雄数据  拿到数组后比较和用户传的id 是否相同
+        getAll((err, heros) => {
+            if (err) return callback(err);
+            heros.some(heros => {
+                if (heros.id == parseInt(id)) {
+                    callback(null, heros);
+                    return true;
+                }
+            })
+
+
+        })
+
+
+    },
     deleteHeroById() {}
 }

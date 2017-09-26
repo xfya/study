@@ -2,85 +2,75 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Hero - Admin</title>
-  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
-  <style>
-    .hero-list img {
-      width: 50px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Hero - Admin</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .hero-list img {
+            width: 50px;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <div class="page-header container">
-      <h1><a href="/">亡者农药</a> <small>英雄管理器</small></h1>
-    </div>
-  </header>
-  <div class="container hero-list">
-    <form id="form" action="/add" method="post">
-      <div class="form-group">
-        <label for="exampleInputEmail1">英雄名称</label>
-        <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="请输入英雄名称">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">英雄性别</label>
-        <div class="radio">
-          <label>
+    <header>
+        <div class="page-header container">
+            <h1><a href="/">亡者农药</a> <small>英雄管理器</small></h1>
+        </div>
+    </header>
+    <div class="container hero-list">
+        <form id="form" action="/add" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">英雄名称</label>
+                <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="请输入英雄名称">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">英雄性别</label>
+                <div class="radio">
+                    <label>
             <input type="radio" name="gender" id="optionsRadios1" value="男" checked>男
           </label>
-          <label>
+                    <label>
             <input type="radio" name="gender" id="optionsRadios1" value="女" checked>女
           </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="imgFile">英雄图片</label>
-        <input type="file" id="imgFile">
-        <!--路径保存到什么中比较合适-->
-        <input type="hidden" name="avatar" value="" id="hiddenAvatar">
-        <img src="" style="display:none;" id="preview_img">
-        <p class="help-block">请上传英雄图片.</p>
-      </div>
-      <button type="submit" class="btn btn-success">点击保存</button>
-    </form>
-  </div>
-  <script src="/node_modules/jquery/dist/jquery.js"></script>
-  <script>
-    $(function () {
-      $('#imgFile').on('change', function (e) {
-        if (e.target.files.length !== 1) {
-          return;
-        }
-        // 如果 length 等于1了，表示可以立即将用户选择的图片，上传到服务器
-        // 1. 创建一个 FormData对象
-        var fd = new FormData();
-        // 使用  append 将文件追加到表单中，第一个参数是数据的名称，第二个是要上传的文件
-        fd.append("avatar", e.target.files[0]);
-        // 通过 Jquery 中的 Ajax 上传文件
-        $.ajax({
-          url: '/ajaxPostFile', // 提交到的服务器地址
-          data: fd, // 要上传的数据
-          type: 'post', //表单提交类型
-          dataType:'json', // 服务器返回的是JSON数据
-          processData: false, // 不处理数据
-          contentType: false, //不指定具体的内容类型
-          success: function (result) {
-            // 如果没有发生错误，则设置图片的src
-            if(result.err_code === 0){
-              console.log(result.path);
-              $('#preview_img').attr('src', result.path).fadeIn();
-              // 将服务器返回的图片路径，保存到隐藏域中
-              $('#hiddenAvatar').val(result.path);
-            }else{
-              console.log("NO");
-            }
-          }
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="imgFile">英雄图片</label>
+                <input type="file" id="imgFile">
+                <!--路径保存到什么中比较合适-->
+                <input type="hidden" name="avatar" value="" id="hiddenAvatar">
+                <img src="" style="display:none;" id="preview_img">
+                <p class="help-block">请上传英雄图片.</p>
+            </div>
+            <button type="submit" class="btn btn-success">点击保存</button>
+        </form>
+    </div>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function() {
+            $('#imgFile').on('change', function(e) {
+
+                // console.log(e.target.files.length)
+                if (e.target.files.length != 1) {
+                    return;
+                }
+                var formData = new FormData();
+                formData.append("avatar", e.target.files[0])
+                $.ajax({
+                    url: "/ajaxPostFile",
+                    data: formData,
+                    type: 'post',
+                    processData: false,
+                    contentType: false,
+                    success: function(result) {
+                        console.log(result)
+                    }
+                })
+
+            })
         });
-      });
-    });
-  </script>
+    </script>
 </body>
 
 </html>

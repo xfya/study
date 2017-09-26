@@ -2,14 +2,24 @@ var path = require('path');
 var template = require('art-template');
 var fs = require('fs');
 var handler = require('./handler.js')
+var urlParse = require('url')
+    // 官方的模式
 
 module.exports = function(req, res) {
-    var url = req.url;
+
+    var { pathname: url, query } = urlParse.parse(req.url, true)
+        //  将req中结构出来的req。query  添加成自定义成的
+    req.query = query;
+
     if (url == "/") {
         handler.getIndexPage(req, res)
 
     } else if (url == '/add') {
         handler.getAdd(req, res)
+    } else if (url == "/info") {
+        handler.showHeroInfo(req, res)
+    } else if (url == "/ajaxPostFile") {
+        handler.ajaxPostFile(req, res)
     }
 
 
