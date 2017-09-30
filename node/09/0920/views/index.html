@@ -38,8 +38,8 @@
                     <td><img src="{{$value.avatar}}" alt=""></td>
                     <td>
                         <a href="/info?id={{$value.id}}">查看</a>
-                        <a href="">编辑</a>
-                        <a href="">删除</a>
+                        <a href="/edit?id={{$value.id}}">编辑</a>
+                        <a class="del" href="/del?id={{$value.id}}">删除</a>
                     </td>
                 </tr>
                 {{/each}}
@@ -47,6 +47,28 @@
             </tbody>
         </table>
     </div>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+
+    <script>
+        $(function() {
+            $('.del').on('click', function(e) {
+                e.preventDefault()
+                var url = $(this).attr('href');
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(result) {
+                        console.log(result);
+                        if (result.err_code == 0) {
+                            location.href = '/'
+                        }
+                    }
+
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

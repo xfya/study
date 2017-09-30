@@ -10,6 +10,9 @@ module.exports = function(req, res) {
     var { pathname: url, query } = urlParse.parse(req.url, true)
         //  将req中结构出来的req。query  添加成自定义成的
     req.query = query;
+    var method = req.method.toUpperCase().trim();
+    console.log(method, url)
+        // console.log(req.method)
 
     if (url == "/") {
         handler.getIndexPage(req, res)
@@ -20,6 +23,14 @@ module.exports = function(req, res) {
         handler.showHeroInfo(req, res)
     } else if (url == "/ajaxPostFile") {
         handler.ajaxPostFile(req, res)
+    } else if (method = "GET" && url == "/edit") {
+        handler.geteditHero(req, res)
+    } else if (url == '/updateHeroInfo') {
+
+        handler.updateHeroInfo(req, res)
+    } else if (url == '/del') {
+        console.log('xxxxxxxxxxxxxxxx')
+        handler.deleteHeroById(req, res)
     }
 
 

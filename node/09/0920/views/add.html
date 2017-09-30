@@ -64,7 +64,12 @@
                     processData: false,
                     contentType: false,
                     success: function(result) {
+
+                        var result = JSON.parse(result)
                         console.log(result)
+
+                        $('#preview_img').attr('src', result.path)
+
                     }
                 })
 

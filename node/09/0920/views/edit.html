@@ -2,57 +2,123 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Hero - Admin</title>
-  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
-  <style>
-    .hero-list img {
-      width: 50px;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <title>Hero - Admin</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .hero-list img {
+            width: 50px;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <div class="page-header container">
-      <h1>亡者农药 <small>英雄管理器</small></h1>
+    <header>
+        <div class="page-header container">
+            <h1><a href="/">亡者农药</a> <small>英雄管理器</small></h1>
+        </div>
+    </header>
+    <div class="container hero-list">
+        <form id="form1">
+            <input type="hidden" name="id" value="{{id}}">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">英雄名称</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" value="{{name}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+            <input type="radio" value="男" name="gender" {{gender==='男'?'checked':''}}> 男
+          </label>
+                    <label class="radio-inline">
+            <input type="radio" value="女" name="gender" {{gender==='女'?'checked':''}}> 女
+          </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">头像</label>
+                <div class="col-sm-10">
+                    <!--注意：我们把 英雄原来的头像 URL 地址，保存到了一个隐藏域中，name为 avatar-->
+                    <input type="hidden" name="avatar" value="{{avatar}}">
+                    <!--注意：由于 file 控件并没有 name 属性，所以通过普通 form 表单提交到服务器-->
+                    <input type="file" id="fileAvatar">
+                    <img src="{{avatar}}" alt="" id="preview_img">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">保存修改</button>
+                </div>
+            </div>
+        </form>
     </div>
-  </header>
-  <div class="container hero-list">
-    <form>
-      <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">英雄名称</label>
-        <div class="col-sm-10">
-          <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Email" value="李白">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
-        <div class="col-sm-10">
-          <label class="radio-inline">
-            <input type="radio" value="m" name="gender" checked id="inlineRadio1" value="option1"> 男
-          </label>
-          <label class="radio-inline">
-            <input type="radio" value="f" name="gender" id="inlineRadio2" value="option2"> 女
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">头像</label>
-        <div class="col-sm-10">
-          <input type="file" name="avatar" id="exampleInputFile">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">保存修改</button>
-        </div>
-      </div>
-    </form>
-  </div>
-  <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function() {
+            // 客户端头像预览
+            $('#fileAvatar').on('change', function(e) {
+                if (e.target.files.length !== 1) {
+                    return;
+                }
+
+                // 读取文件
+                var freader = new FileReader();
+                freader.readAsDataURL(e.target.files[0]);
+                freader.onload = function(e) {
+                    // 最终读取到的图片，格式是 base64 编码的字符串，可以直接交给图片去显示
+                    var result = e.target.result;
+                    $('#preview_img').attr('src', result);
+                }
+            });
+
+            // 使用 Ajax 方式提交 form 表单
+            $('#form1').on('submit', function(e) {
+                // 通过 事件对象 e，阻止表单默认提交事件
+                e.preventDefault();
+
+                // 自己通过 Ajax 实现表单提交
+                // 创建一个 JS 对象的表单，再new FormData的时候，可以传递一个form表单元素，表示根据传递的form元素，初始化一个表单，这样就能直接拿到form表单元素中的数据
+                var form = new FormData(document.querySelector('#form1'));
+                // 通过 form.append()方法，向表单中追加一些数据，这种append方式，数据多了之后不方便
+                // form.append();
+
+                // 可以通过 get 方法，获取到表单中指定的数据
+                /*console.log('删之前：'+form.get('avatar'));
+                form.delete('avatar');
+                console.log('删之后：'+form.get('avatar'));*/
+
+                // 如果用户没有选择新头像，则直接把 avatar 中的 URL 路径提交到服务器
+                // 如果用户选择了新头像，则先把 avatar 中的 URL 路径 从表单中删除，再把真正的图片数据 append到form中
+                if (document.querySelector('#fileAvatar').files.length !== 0) {
+                    // 先把 avatar 从表单中删除，此时，avatar中的数据是 URL 字符串
+                    form.delete('avatar');
+                    // 再重新向表单中添加一个 avatar属性，此时，avatar中的数据是一个真正的图片文件
+                    form.append('avatar', document.querySelector('#fileAvatar').files[0]);
+                }
+
+                // id、name、gender、 avatar【有可能是url路径，也有可能是一个图片文件】
+
+                // 调用Ajax提交表单数据，可能会包含图片文件
+                $.ajax({
+                    url: '/updateHeroInfo',
+                    data: form,
+                    type: 'post',
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(result) {
+                        console.log(result);
+                        if (result.err_code === 0) { // 表示没有出错
+                            window.location.href = '/';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
-

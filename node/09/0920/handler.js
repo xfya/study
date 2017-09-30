@@ -46,12 +46,77 @@ module.exports = {
         form.uploadDir = path.join(__dirname, '/img/')
         form.keepExtensions = true;
         form.parse(req, function(err, fields, files) {
-            console.log(files)
-                // result.avatar.path = files.path;
+            // console.log(files)
+            // result.avatar.path = files.path;
             var rel = path.relative(__dirname, files.avatar.path)
+                // console.log(rel)  处理路径得到一个绝对路径
+            var resultPath = '/' + rel.replace('\\', '/');
+            // console.log(resultPath)
+            // 我们需要把左侧栏最终的图片url  访问地址   返回客户端了
+            var result = {
+                err_code: 0,
+                path: resultPath
+            }
+
+
+            // res.end(JSON.stringify(result))
+
+            res.json(result)
         });
 
 
+
+    },
+    geteditHero(req, res) {
+        var id = req.query.id;
+        modelList.getHeroById(id, (err, hero) => {
+            if (err) throw err;
+            res.render('edit', hero)
+        })
+    },
+    updateHeroInfo(req, res) {
+        // 接收post 提交过来的表单数据
+        // 普通表单键值对 
+        // 创建一个formidable  表单
+
+        // var form = new formidable.IncomingForm();
+        var form = new formidable.IncomingForm();
+        // 设置上传的路径
+        form.uploadDir = path.join(__dirname, '/img/');
+        // 保留文件上传时候的后缀名
+        form.keepExtensions = true;
+        form.encoding = 'utf-8';
+        // 通过form。parse  解析数据
+        form.parse(req, (err, hero, files) => {
+            if (files.avatar !== undefined) {
+                var resultPath = '/' + path.relative(__dirname, files.avatar.path).replace('\\', '/');
+                hero.avatar = resultPath;
+            }
+            modelList.updateHero(hero, (err, result) => {
+                if (result) {
+                    res.json({
+                        err_code: 0
+                    })
+                }
+            })
+
+        })
+    },
+    deleteHeroById(req, res) {
+        var id = req.query.id;
+        // console.log(id)
+        // 执行具体的删除逻辑代码
+        modelList.deleteHeroById(id, (result) => {
+            console.log(result, 'sdsds')
+
+            var result = {
+                    err_code: 0
+                }
+                // res.json(result)
+            modelList.getAllHero((err, heros) => {
+                res.json({ list: heros })
+            })
+        })
 
     }
 }
