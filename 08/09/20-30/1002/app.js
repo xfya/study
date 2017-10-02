@@ -1,28 +1,24 @@
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'my123'
-});
-// 3使用创建的数据可连接查询数据
-connection.connect();
+var express = require('express');
+var moment = require('moment')
+var app = express();
+var router = require('./router/indexRouter.js')
+    // 注册自己的路由
 
-var newuser = {
+// 托管静态资源
+app.use('/node_modules', express.static('node_modules'))
+    // 设置模板引擎
+app.set('view engine', 'ejs')
+    // 导入解析body 数据的中间件
+    // 导入解析body 数据的中间件
+var bodyParser = require('body-parser')
 
-    age: 213,
-    adress: '1郑州',
-    gender: '男1',
-    name: 'qq2'
-}
-
-
-connection.query('insert into users set ?', [newuser], (err, result) => {
-    if (err) throw err;
+// 注册解析body 数据的中间件
+app.use(bodyParser.urlencoded({ extended: false }))
 
 
-    console.log(result)
+
+
+app.use(router)
+app.listen(3001, () => {
+    console.log('server  is ruing...' + moment(new Date()).format('YY-MM-DD HH:mm:ss'))
 })
-
-
-connection.end();

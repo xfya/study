@@ -1,0 +1,130 @@
+<%- include( './header.ejs') %>
+
+
+    <h1>
+        用户列表-
+        <%= users.length %>
+    </h1>
+    <div class="panel-body">
+        <form id="form1">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">用户名：</span>
+                <input type="text" name="name" class="form-control">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">年龄：</span>
+                <input type="number" min="0" max="200" name="age" class="form-control">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">性别：</span>
+                <input type="text" name="gender" class="form-control">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">地址：</span>
+                <input type="text" name="adress" class="form-control">
+            </div>
+            <input type="submit" value="添加用户" class="btn btn-primary">
+        </form>
+    </div>
+    </div>
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>gender</th>
+                <th>adress</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%  users.forEach((item)=>{%>
+                <tr>
+                    <td>
+                        <%= item.name %>
+                    </td>
+                    <td>
+                        <%= item.age %>
+                    </td>
+                    <td>
+                        <%= item.gender %>
+                    </td>
+                    <td>
+                        <%= item.adress %>
+                    </td>
+                    <td>
+                        <a href="/info?id=<%= item.id  %>">查看</a>
+                        <a href="/edit?id=<%= item.id  %>">编辑</a>
+                        <a class="del" href="/del?id=<%= item.id  %>">删除</a>
+                    </td>
+                </tr>
+                <% })  %>
+        </tbody>
+    </table>
+
+
+    <script type='text/template' id='tpl'>
+        {{each user }}
+        <tr>
+            <td>
+                {{ $value.name }}
+            </td>
+            <td>
+                {{ $value.age }}
+            </td>
+            <td>
+                {{ $value.gender }}
+            </td>
+            <td>
+                {{ $value.adress }}
+            </td>
+            <td>
+                <a href="/info?id={{$value.id}}">查看</a>
+                <a href="/edit?={{$value.id}}">编辑</a>
+                <a class="del" href="/del?id={{$value.id}}">删除</a>
+            </td>
+        </tr>
+
+        {{/each}}
+
+    </script>
+    <script src="/node_modules/art-template/lib/template-web.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $("#form1").on('submit', function(e) {
+            console.log($(this).serialize())
+            e.preventDefault();
+            $.ajax({
+                url: "/addUser",
+                data: $(this).serialize(),
+                type: 'post',
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result)
+                    var html = template('tpl', result)
+                    $('tbody').html(html);
+                    $("#form1")[0].reset()
+                }
+            })
+        })
+
+        $('body').on('click', '.del', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'get',
+                dataType: 'json',
+                success: function(result) {
+                    var html = template('tpl', result)
+                    $('tbody').html(html);
+                    $("#form1")[0].reset()
+                }
+
+            })
+        })
+    </script>
+    <%- include('./fotter.ejs') %>
