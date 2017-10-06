@@ -1,0 +1,149 @@
+/* 圆点导航 */
+#fp-nav {
+  position: fixed;
+  z-index: 100;
+  margin-top: -32px;
+  top: 50%;
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+
+#fp-nav.right {
+  right: 17px;
+}
+
+#fp-nav ul li{
+  display: block;
+  width: 14px;
+  height: 13px;
+  margin: 7px;
+  position:relative;
+}
+
+#fp-nav ul li a{
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#fp-nav ul li a.active span,
+#fp-nav ul li:hover a.active span {
+  height: 12px;
+  width: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 100%;
+}
+
+#fp-nav ul li a span {
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  height: 4px;
+  width: 4px;
+  border: 0;
+  background: #333;
+  left: 50%;
+  top: 50%;
+  margin: -2px 0 0 -2px;
+  transition: all 0.1s ease-in-out;
+}
+
+#fp-nav ul li:hover a span{
+  width: 10px;
+  height: 10px;
+  margin: -5px 0px 0px -5px;
+}
+
+/* 直接进入 按钮 */
+.shopping-center {
+  position:  fixed;
+  top: 5%;
+  right: 5%;
+  z-index: 10;
+}
+
+/* 第一屏 */
+.qbh-title {
+  background-image: url("../image/qbh-title-bg.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: relative;
+}
+
+.qbh-title .qbh-title-extra {
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.qbh-title .qbh-title-sofa {
+  position: absolute;
+  bottom: 329px;
+  left: 50%;
+  transform: translateX(-200px);
+
+  animation:  upsofa 2s linear infinite;
+}
+
+.qbh-title .qbh-title-name {
+  position: absolute;
+  top: 10%;
+  right: 20%;
+
+  animation: upname 2.5s linear infinite;
+}
+
+/* 沙发动画 */
+@keyframes upsofa {
+  0% {
+    bottom: 329px;
+  }
+
+  50% {
+    bottom: 375px;
+  }
+
+  100% {
+    bottom: 329px;
+  }
+}
+
+/* 网站名称动画 */
+@keyframes upname {
+  0% {
+    top: 10%;
+  }
+
+  50% {
+    top: 15%;
+  }
+
+  100% {
+    top: 10%;
+  }
+}
+
+/* 第二屏 */
+.qbh-list {
+  background-image: url("../image/qbh-list-bg.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: relative;
+}
+
+.qbh-list .qbh-list-worda,.qbh-list .qbh-list-wordb {
+  position: absolute;
+  bottom: 500px;
+  left: 50%;
+  margin-bottom: 50px;
+  margin-left: -180px;
+}
+
+.qbh-list .qbh-list-wordb {
+  opacity: 0;
+}
