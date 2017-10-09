@@ -42,7 +42,10 @@ fs.readdir(path.join(__dirname, './router'), (err, filename) => {
 })
 
 
-
+var bodyParser = require('body-parser')
+    // var urlencodedParser = 注册解析表单数据的中间件
+    // 
+app.use(bodyParser.urlencoded({ extended: false }))
 
 
 

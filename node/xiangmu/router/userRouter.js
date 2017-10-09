@@ -5,6 +5,6 @@ var userCtrl = require('../controller/userCtrl.js')
 router
     .get('/register', userCtrl.getRegisterPage)
     .get('/login', userCtrl.getLoginIn)
-
+    .post('/register', userCtrl.registerNewUser)
 
 module.exports = router
