@@ -27,18 +27,13 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                <div class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <a href='/login' class="form-control btn-primary">登录</a>
-                        <a href='/register' class="form-control btn-success ">注册</a>
-                    </div>
-
-                </div>
+            <% if(isLogin){  %>
+            
                 <div class="navbar-form navbar-right">
                     <div class="form-group">
                         <a href='/' class="form-control btn-primary">欢迎 <strong>泥巴把</strong></a>
                         <a href='/' class="form-control btn-success ">注销</a>
+                                  
                     </div>
 
                 </div>
@@ -53,7 +48,17 @@
                         </ul>
                     </li>
                 </ul>
+            <% } else{ %>
+                  <div class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <a href='/login' class="form-control btn-primary">登录</a>
+                        <a href='/register' class="form-control btn-success ">注册</a>
+                    </div>
+                 
+                </div>
 
+
+                    <% } %>   
             </div>
             <!-- /.navbar-collapse -->
         </div>

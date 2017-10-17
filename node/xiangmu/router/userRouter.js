@@ -6,5 +6,6 @@ router
     .get('/register', userCtrl.getRegisterPage)
     .get('/login', userCtrl.getLoginIn)
     .post('/register', userCtrl.registerNewUser)
+    .post('/login', userCtrl.login)
 
 module.exports = router

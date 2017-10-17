@@ -5,6 +5,9 @@ var app = express();
 var fs = require('fs')
 var path = require('path')
     // 托管静态资源文件
+    // 导入session  中间件
+var session = require('express-session')
+
 
 app.use('/node_modules', express.static('node_modules'));
 // 设置模引擎
@@ -29,6 +32,15 @@ app.set('views', './views')
 // 使用fs.readdir  方法  读取 router 下所有的文件使用循环导入每个
 // 文件
 
+app.use(session({
+    // 加密session 追加的时候加密的字符串
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
+
+
 fs.readdir(path.join(__dirname, './router'), (err, filename) => {
     if (err) throw err;
 
@@ -46,6 +58,8 @@ var bodyParser = require('body-parser')
     // var urlencodedParser = 注册解析表单数据的中间件
     // 
 app.use(bodyParser.urlencoded({ extended: false }))
+
+
 
 
 
