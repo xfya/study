@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <script>
+        var cvs = document.getElementById('canvas');
+        var context = cvs.getContext('2d');
+
+        context.strokeRect(100, 100, 200, 100)
+    </script>
+
+</body>
+
+</html>

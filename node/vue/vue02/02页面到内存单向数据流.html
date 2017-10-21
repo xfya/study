@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    单向数据流 <input type="text" id='i' name="" value="">
+    <script>
+        var obj = {
+            name: 'jack'
+        };
+        document.getElementById('i').value = obj.name
+
+        window.addEventListener('keyup', function(e) {
+            obj.name = e.target.value
+        })
+    </script>
+
+
+</body>
+
+</html>

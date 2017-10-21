@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="i">
+    <script>
+        var obj = {
+            name: "jack"
+        };
+        var temname = '';
+        Object.defineProperty(obj, 'name', {
+
+            set: function(newV) {
+                temname = newV;
+                i.value = newV;
+                // 只要修改了属性就会触发该属性
+                console.log(newV, '触发了setter')
+            },
+            get: function() {
+                console.log('getter  触发了')
+                return temname;
+            }
+        })
+
+        // 双向数据流的核心  defineProperty
+    </script>
+</body>
+
+</html>

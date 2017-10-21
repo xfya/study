@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .red {
+            background-color: red;
+        }
+        
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!--<div id="app">
+        <!--讲元素插入到元素的innerTecxt 中 只能是双标签-->
+    <!--讲元素插入到元素的innerTecxt 中 只能是双标签-->
+    <!--<span v-text="text"></span>-->
+    <!--
+            v-html  可以直接使用 可以不用引包
+            v-if  是 移除与否的问题
+            v-show 是显示与否的问题
+            v-model  双向显示 
+            v-bind    非常的友好  给元素的属性赋值
+        -->
+    <!--<p v-html="html"></p>-->
+
+    <!--<div v-if="isShow">我是v-if</div>
+    <div v-show="isShow">我是v-show</div>
+    <input type="text" v-model="text" name="" value="">
+    </div>-->
+
+    <div id="app2">
+        <!--通过v-bind  可以rang 对象  通过vue 的计算 
+        并动态绑定的页面上面
+
+        v-bind  可以省略 通过简写 来写入
+         -->
+        <span v-bind:class="isRed?'red':'blue'">123</span>
+    </div>
+    <!--常用指令-->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!--2 声明范围 -->
+    <script>
+        // 构建vue 的实例
+        // var vm = new Vue({
+        //     // 声明元素的管理范围
+        //     el: "#app",
+        //     data: {
+        //         text: 'hello',
+        //         html: `
+        //             <ul>
+        //                 <li>{{text}}</li>
+        //             </ul>
+        //         `,
+        //         isShow: true,
+
+        //     }
+        // })
+
+        new Vue({
+            el: "#app2",
+            data: {
+                isRed: true
+            }
+        })
+    </script>
+
+
+
+</body>
+
+</html>
