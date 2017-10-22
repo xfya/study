@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var length = 10
+
+        function fn() {
+            alert(this.length)
+        }
+        var obj = {
+            length: 5,
+            method: function(fn) {
+
+                fn() //   this -> window   10
+                arguments[0]() //    arguments[0]-> fn   this ->  arguments[0]  1
+            }
+        }
+        obj.method(fn)
+    </script>
+</body>
+
+</html>

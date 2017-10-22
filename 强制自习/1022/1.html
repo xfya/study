@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //题一：
+        // function  foo() {    
+        //     foo.a  =   function() {
+        //         alert(1)
+        //     };     
+        //     this.a  =   function() {
+        //         alert(2)
+        //     };    
+        //     a  =   function() {
+        //         alert(3)
+        //     };    
+        //     var  a  =   function() {
+        //         alert(4)
+        //     };
+        // }; 
+        // foo.prototype.a  =   function() {
+        //     alert(5)
+        // };
+        // foo.a  =   function() {
+        //     alert(6)
+        // };
+        // foo.a();  //6
+        // var  obj  =  new  foo();
+        // obj.a(); //2 
+        // foo.a(); //1
+
+        //题二：
+        // var obj = {
+        //     proto: {
+        //         a: 1,
+        //         b: 2
+        //     }
+        // }; //{a:1,b:2,c:3}  {a:-1, b:-2}
+        // function F() {};
+        // F.prototype = obj.proto; //{b:2,c:3}
+        // var f = new F();
+        // obj.proto.c = 3;
+        // obj.proto = {
+        //     a: -1,
+        //     b: -2
+        // };
+        // alert(f.a); // 1 
+        // alert(f.c); //3 
+        // delete F.prototype['a'];
+        // alert(f.a); //undefined
+        // alert(obj.proto.a); //-1
+
+
+        // 题三
+        // var getName
+
+        function getName() {
+            alert(5);
+        }
+
+        function Foo() {
+            getName = function() {
+                alert(1);
+            }
+            return this;
+        }
+
+        Foo.getName = function() {
+            alert(2);
+        }
+
+        Foo.prototype.getName = function() {
+            alert(3);
+        }
+
+        var getName = function() {
+            alert(4);
+        }
+
+        function getName() {
+            alert(5);
+        }
+
+        Foo.getName(); //2
+
+        getName(); //4
+
+        Foo().getName(); //1
+
+        getName(); // 1
+
+        new Foo.getName(); //;2
+        new Foo().getName(); //3 
+
+        new new Foo().getName(); //3
+    </script>
+</body>
+
+</html>

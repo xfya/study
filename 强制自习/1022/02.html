@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //题一：
+        function  foo() {    
+            foo.a  =   function() {
+                alert(1)
+            };     
+            this.a  =   function() {
+                alert(2)
+            };    
+            a  =   function() {
+                alert(3)
+            };    
+            var  a  =   function() {
+                alert(4)
+            };
+        }; 
+        foo.prototype.a  =   function() {
+            alert(5)
+        };
+        foo.a  =   function() {
+            alert(6)
+        }; // obj.a obj['a']  
+        foo.a();  //  6 
+        var  obj  =  new  foo();
+        obj.a();  //  2 
+
+        foo.a(); // 1
+
+
+        // function fn(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     // this.a = 'ff';
+        //     a = 'ff'
+
+        //     fn.b = 2
+        // }
+
+        // fn.b = 5;
+        // console.log(fn.b) // 5 
+        // var f1 = new fn('zz', 14)
+        // console.log(f1) // f1.b
+        // console.log(fn.b) // 2 
+        // console.log(a) /// ff
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造  01
+        // var F = function() {}; // 构造函数Fn
+
+        // Object.prototype.a = function() {};
+        // Function.prototype.b = function() {};
+
+        // var f = new F(); // 对象fn
+
+
+        // console.log(f.a) // function() {}
+        // console.log(f.b) // undefined
+        // console.log(F.b) //  function() {}
+        // console.log(F.a) // function() {}
+
+
+
+
+
+
+
+
+        // 02  函数
+        // var a = 5;
+        // //     函数体  var 变量
+        // function a() {};
+
+        // console.log(a) //  5
+
+        // 03  http://www.cnblogs.com/jiqing9006/p/5091491.html
+        //  ;   
+        // (function() {
+        //     // 'use strict';
+        //     var a = b = 5;
+
+        // })();
+
+        // console.log(b, a); // 
+
+
+
+
+
+
+
+
+        // 、、04
+        // (function() {
+        //     'use strict';
+        //     var a = window.b = 5;
+
+        // })();
+
+        // console.log(b);
+
+
+
+        //  05 
+        // this  四中指向模式
+        // 函数中 this   window
+        // 对象中 this 谁调用指向指向谁
+        // 上下文中 this   call  apply
+        //   构造函数中  this  new  对象
+        var fullname = 'John Doe';
+        var obj = {
+            fullname: 'Colin Ihrig',
+            prop: {
+                fullname: 'Aurelio De Rosa',
+                getFullname: function() {
+                    return this.fullname;
+                }
+            }
+        };
+
+        console.log(obj.prop.getFullname()); // Aurelio De Rosa
+
+        var test = obj.prop.getFullname;
+
+        console.log(test()); // John Doe'
+    </script>
+
+</body>
+
+</html>
